@@ -71,6 +71,7 @@ I need to create a list of black actors, get their id from tmdb
 then 
 list of movies with the actor id
 Get several actor ids, create query that searches for all movies where that actor id is present
+For each actor in the list, get the movie details
 
 Two ways of creating a collection :
 
