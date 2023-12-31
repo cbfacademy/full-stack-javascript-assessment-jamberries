@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/cbfacademy/full-stack-javascript#readme",
   "dependencies": {
+    "debug": "^4.3.4",
+    "http-errors": "^2.0.0",
     "mongodb": "^6.3.0"
   }
 }
