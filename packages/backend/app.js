@@ -1,5 +1,8 @@
+const createError = require('http-errors')
+const debugError = require('debug')('jamberries:error:app')
 const express = require("express");
 const helmet = require("helmet");
+const path = require('path')
 const cors = require("cors");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
@@ -19,6 +22,12 @@ const client = new MongoClient(uri, {
   }
 });
 
+app.use(express.static(path.join(__dirname, '../frontend/public')))
+
+// Specify all of the routes
+app.use('/', require('./routes/index'))
+
+
 client.connect((err) => {
   if (err) {
     console.error("Error connecting to MongoDB", err);
@@ -28,11 +37,28 @@ client.connect((err) => {
   client.close();
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello from the CBF Academy backend!");
-});
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    next(createError(404))
+  })
+  
+  // error handler
+  app.use(function (err, req, res, next) {
+    if (err.name === 'NotFoundError') {
+      res.status(404)
+    } else if (err.name === 'ForbiddenError') {
+      res.status(403)
+    } else {
+      debugError(err)
+      console.log(err)
+      res.status(500)
+    }
+    res.send()
+  })
+
+module.exports = app
