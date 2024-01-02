@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Main from "./Main.js"
-import Navbar from "./Navbar.js"
+import React from "react";
+//import React, { useState, useEffect } from "react";
+import { Route, Routes } from 'react-router-dom';
+import Navbar from "./Navbar"
 import "./App.css";
-
+import Home from './pages/Home';
+import Films from './pages/Films';
 /*
 function App() {
   return (
@@ -31,7 +33,10 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Main />
+      <Routes> {/* The Switch decides which component to show based on the current URL.*/}
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/films' element={<Films/>}></Route>
+    </Routes>
     </div>
   );
 }
