@@ -1,6 +1,10 @@
+require('dotenv').config()
 const mongoose = require("mongoose");
 const FilmsModel = require('./FilmsModel.js')
 const ActorsModel = require('./ActorsModel.js')
+const db = process.env.MONGO_URI;
+const authToken = process.env.TMDB_TOKEN
+const apiKey = process.env.TMDB_KEY
 
 const fetch = require("node-fetch");
 
@@ -17,6 +21,7 @@ let saveCounter = 0;
 
 mongoose.connect(db)
 .then(() => console.log("mongodb connection success"))
+.then(() => getURLarray)
 //.then(()=> createDB())
 .catch(error => console.log(error));
 
@@ -28,7 +33,6 @@ For each id in array, perform fetch. If tmdb_id exists already, ignore
 
 Possibly ignore credits with character: Self (archive footage)
 */
-const url = ['https://api.themoviedb.org/3/person/19492/movie_credits?api_key=feb0d8d5c36fb36e4304681207e5ae3d&?language=en-US'];
 
 function createDB () {
   url.map(async url => {
@@ -100,6 +104,7 @@ process.exit()
 }
 
 function getURLarray () {
+  let url = [`https://api.themoviedb.org/3/person/19492/movie_credits?api_key=${apiKey}&?language=en-US`];
   // will need different model for actors
-  await ActorsModel.find({}).select('name age')
+  ActorsModel.find({}).select('name age')
 }
