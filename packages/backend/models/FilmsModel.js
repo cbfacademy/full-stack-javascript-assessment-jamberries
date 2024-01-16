@@ -30,4 +30,4 @@ const filmsSchema = new Schema({
     }
 });
 
-module.exports = FilmsModel = mongoose.model("films", filmsSchema, )
+module.exports = FilmsModel = mongoose.model("films", filmsSchema)

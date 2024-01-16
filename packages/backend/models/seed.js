@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const FilmsModel = require('./FilmsModel.js')
-const db = 'mongodb+srv://admin:89sJ0SIuqpInQ2qP@cluster0.h5ci1pg.mongodb.net/CBF_Project?retryWrites=true&w=majority';
-const authToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZWIwZDhkNWMzNmZiMzZlNDMwNDY4MTIwN2U1YWUzZCIsInN1YiI6IjY1Nzc0NDc0YTFkMzMyMDBlMWI4MWQzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uFXPVL43r29j1A6RPSbadY1Dw_zzKam819qMRx8Hw6I'
+const ActorsModel = require('./ActorsModel.js')
 
 const fetch = require("node-fetch");
 
@@ -102,5 +101,5 @@ process.exit()
 
 function getURLarray () {
   // will need different model for actors
-  await .find({}).select('name age')
+  await ActorsModel.find({}).select('name age')
 }
