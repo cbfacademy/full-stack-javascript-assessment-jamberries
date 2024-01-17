@@ -4,6 +4,7 @@ import NavigationBar from "./components/NavigationBar"
 import "./App.css";
 import Home from './pages/Home';
 import Films from './pages/Films';
+
 //import Footer from './components/Footer';
 /*
 function App() {

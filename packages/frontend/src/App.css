@@ -39,3 +39,20 @@
 .banner {
   height: 40vh;
 }
+
+.filmCard{
+  width: 13rem;
+  margin-bottom: 2rem;
+  padding:20px;
+
+}
+
+.blurPoster {
+  filter: blur(5px); 
+}
+
+.filmTitle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
