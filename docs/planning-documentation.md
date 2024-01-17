@@ -56,15 +56,16 @@ Pages
 - movie_id from tmdb
 - id
 - genres [array]
-- original language
-- original title
-- production country
+- <s>original language</s>
+- <s>original title</s>
+- /production country
 - title
 - overview
 - poster path
+- backdrop_path
 - release date
-- runtime
-- directors
+- /runtime
+- /directors
 
 TO POPULATE MY DATABASE
 I need to create a list of black actors, get their id from tmdb
@@ -90,3 +91,19 @@ Two ways of creating a collection :
 - Cons: 
     - multiple collections needed 
     - need to join from multiple documents
+
+
+Poster path
+- https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster path}
+
+- example 
+- /skbFWkAROLO7nmP8meSLru5sCSO.jpg
+
+Backdrop path 
+- https://media.themoviedb.org/t/p/w533_and_h300_bestv2/${backdrop_path}
+
+- example 
+- /j69IYCAmeFlF6dcoZZAWRUmI8On.jpg
+
+To do Wednesday:
+Create array of URLS
