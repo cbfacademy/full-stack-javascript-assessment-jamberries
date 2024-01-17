@@ -18,7 +18,7 @@ function App() {
 
 function App() {
 
-  const [_data, setData] = useState({});
+  const [data, setData] = useState({});
 
   useEffect(() => {
     fetch(process.env.REACT_APP_API_URL + "/")
@@ -33,6 +33,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/films' element={<Films/>}></Route>
       </Routes>
+      <div>{data.age}</div>
     </div>
   );
 }
