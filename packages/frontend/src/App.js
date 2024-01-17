@@ -1,5 +1,4 @@
-import React from "react";
-//import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar"
 import "./App.css";
@@ -17,20 +16,15 @@ function App() {
 
 
 function App() {
-  /*
-  const [message, setMessage] = useState("");
+
+  const [_data, setData] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8000/message")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
+    fetch(process.env.REACT_APP_API_URL + "/")
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
 
-  return (
-    <div className="App">
-      <h1>{message}</h1>
-    </div>
-  );*/
   return (
     <div className="App">
       <NavigationBar/>
