@@ -14,14 +14,14 @@ function App() {
     </div>
   );
 }*/
-
+const api_url = process.env.REACT_APP_API_URL
 
 function App() {
 
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_API_URL + "/")
+    fetch(`${api_url}`)
       .then(res => res.json())
       .then(data => setData(data))
   }, [])

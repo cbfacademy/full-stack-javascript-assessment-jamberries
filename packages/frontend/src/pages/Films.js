@@ -4,6 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FilmList from "../components/FilmList";
 
+const api_url = process.env.REACT_APP_API_URL
+
 export default function Films() {
     const [films, setFilms] = useState([]);
     // const [pageNumber, setPageNumber] = useState(0);
@@ -13,7 +15,7 @@ export default function Films() {
 
     useEffect(() => {
       //  fetch(process.env.REACT_APP_API_URL + `/api/films?page=${pageNumber}`)
-      fetch(process.env.REACT_APP_API_URL + `/api/films`)
+      fetch(`${api_url}api/films`)
       .then(res => res.json({}))
         .then(({films, pages}) => {
             setFilms(films)
