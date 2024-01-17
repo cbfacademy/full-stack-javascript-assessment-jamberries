@@ -22,5 +22,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/models/seed.js
-packages/backend/models/seed.js
