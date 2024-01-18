@@ -27,8 +27,8 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 
   //client.close();
 // Specify all of the routes
-app.use('/', require('./routes/index'))
-app.use('/', require('./routes/films'))
+app.use('/', require('./routes/indexRoute'))
+app.use('/', require('./routes/filmsRoute'))
 
 
 const PORT = process.env.PORT || 8000;

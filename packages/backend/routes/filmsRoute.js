@@ -6,9 +6,10 @@ const Films = require("../models/FilmsModel");
 router.get('/api/films', async (req, res) => {
  try {
     const page = parseInt(req.query.page || "0")
-    const pageSize = 5;
+    const pageSize = 18;
     const totalFilms = await Films.countDocuments({})
-    const films = await Films.find()
+    const films = await Films.find({})
+    .sort({title: 'asc'})
     .limit(pageSize)
     .skip(pageSize * page);
 
