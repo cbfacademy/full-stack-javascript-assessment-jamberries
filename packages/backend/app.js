@@ -1,41 +1,35 @@
-const createError = require('http-errors')
-const debugError = require('debug')('jamberries:error:app')
+require("dotenv").config();
+const createError = require('http-errors');
 const express = require("express");
 const helmet = require("helmet");
-const path = require('path')
+const path = require('path');
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
+const uri = process.env.MONGO_URI; 
 
-require("dotenv").config();
+
+
 const app = express();
 
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-const uri = process.env.MONGO_URI; // Add your connection string from Atlas to your .env file. See https://docs.atlas.mongodb.com/getting-started/
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
 
-app.use(express.static(path.join(__dirname, '../frontend/public')))
+mongoose.connect(uri)
+.then(() => console.log("mongodb connection success"))
+.catch((error) => console.log(error));
 
+app.use(bodyParser.json({ limit: '10mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
+//app.use(express.static(path.join(__dirname, '../frontend/public')))
+
+  //client.close();
 // Specify all of the routes
 app.use('/', require('./routes/index'))
+app.use('/', require('./routes/films'))
 
-
-client.connect((err) => {
-  if (err) {
-    console.error("Error connecting to MongoDB", err);
-    return;
-  }
-  console.log("Connected to MongoDB");
-  client.close();
-});
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
@@ -54,7 +48,6 @@ app.use(function (req, res, next) {
     } else if (err.name === 'ForbiddenError') {
       res.status(403)
     } else {
-      debugError(err)
       console.log(err)
       res.status(500)
     }

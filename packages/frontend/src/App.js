@@ -1,10 +1,10 @@
-import React from "react";
-//import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar"
 import "./App.css";
 import Home from './pages/Home';
 import Films from './pages/Films';
+
 //import Footer from './components/Footer';
 /*
 function App() {
@@ -14,23 +14,18 @@ function App() {
     </div>
   );
 }*/
-
+const api_url = process.env.REACT_APP_API_URL
 
 function App() {
-  /*
-  const [message, setMessage] = useState("");
+
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8000/message")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
+    fetch(`${api_url}`)
+      .then(res => res.json())
+      .then(data => setData(data))
+  }, [])
 
-  return (
-    <div className="App">
-      <h1>{message}</h1>
-    </div>
-  );*/
   return (
     <div className="App">
       <NavigationBar/>
@@ -38,6 +33,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/films' element={<Films/>}></Route>
       </Routes>
+      <div>{data.age}</div>
     </div>
   );
 }

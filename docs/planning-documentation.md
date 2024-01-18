@@ -107,3 +107,9 @@ Backdrop path
 
 To do Wednesday:
 Create array of URLS
+
+To do
+Movie list
+Pagination
+Hover overview/full title
+Form page to add actor? then link to seed? or create a seperate api call to add
