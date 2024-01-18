@@ -17,11 +17,11 @@ export default function FilmDetail() {
 
     useEffect(() => {
       //fetch(`${api_url}/api/films/${id}`)
-      fetch(`${tmdb_url}${id}${tmdb_api}`)
+     fetch(`${tmdb_url}${id}${tmdb_api}`)
       .then(res => res.json({}))
       .then((film) => {
         setFilm(film)
-    })
+    }, [])
     .catch(error => console.error(error));
     });
     if (film) {
