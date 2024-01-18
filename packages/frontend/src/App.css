@@ -89,3 +89,10 @@
   text-decoration: none;
 }
 
+.genreDiv {
+  background-color: #282c34;
+}
+.genreButton {
+  border-radius: 25px !important;
+}
+

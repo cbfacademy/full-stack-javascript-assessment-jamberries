@@ -2,40 +2,39 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import FilmList from "../components/FilmList";
-import PaginationBar from "../components/PaginationBar";
+import GenreButton from "../components/GenreButton";
 
 const api_url = process.env.REACT_APP_API_URL
 
-export default function Films() {
-    const [films, setFilms] = useState([]);
-    const [pages, setPages] = useState(0);
-    const [pageNumber, setPageNumber] = useState(0);
-
+export default function Genres() {
+    const [genres, setGenres] = useState([]);
 
     useEffect(() => {
-      fetch(`${api_url}/api/films?page=${pageNumber}`)
+      fetch(`${api_url}/api/genres`)
       .then(res => res.json({}))
-      .then(({films, pages}) => {
-        setFilms(films)
-        setPages(pages);
+      .then((genres) => {
+        setGenres(genres)
     })
     .catch(error => console.error(error));
-    }, [pageNumber]);
+    }, []);
     return (
         <Container fluid>
             <Row>
                 <Col>
-                <h1 className="header mt-4"> Films</h1>
+                    <h1 className="header mt-4">Genres</h1>
                 </Col>
             </Row>
             <Row>
                 <Col md={{ span: 6, offset: 3 }}>
-                    <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
                 </Col>
             </Row>
+                <Col>
+                <div className="genreDiv">
+                    <GenreButton genres={genres}/>
+                </div>
+                </Col>
             <Row>
-                <FilmList films={films}/>
+
             </Row>
             
         </Container>

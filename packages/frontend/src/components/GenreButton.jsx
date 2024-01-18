@@ -4,9 +4,9 @@ import Button from 'react-bootstrap/Button';
 function GenreButton(props) {
    
     return (
-        props.genres.map(genre => 
+        props.genres.map((genre,index) => 
             <>
-        <Button variant="outline-dark" key={props.filmId+genre.id}>{genre.name}</Button>{' '}
+        <Button className="genreButton mb-2" variant="outline-dark" key={genre.id+index}>{genre.name}</Button>{' '}
         </>)
         
     )
