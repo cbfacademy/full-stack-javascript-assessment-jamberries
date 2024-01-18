@@ -21,7 +21,7 @@ const PaginationBar = (props) => {
     }
 
   return (
-     <Pagination>
+     <Pagination className='pagBar'>
          <Pagination.Prev onClick={goToPreviousPage}/>
         {
             pagesArray.map((pageIndex) => (
