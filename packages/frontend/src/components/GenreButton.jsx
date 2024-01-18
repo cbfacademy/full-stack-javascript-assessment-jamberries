@@ -6,7 +6,7 @@ function GenreButton(props) {
     return (
         props.genres.map((genre,index) => 
             <>
-        <Button className="genreButton mb-2" variant="outline-dark" key={genre.id+index}>{genre.name}</Button>{' '}
+        <Button className="genreButton my-2" variant="outline-dark" key={genre.id+index}>{genre.name}</Button>{' '}
         </>)
         
     )
