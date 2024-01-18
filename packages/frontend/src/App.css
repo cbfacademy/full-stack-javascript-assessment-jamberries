@@ -26,6 +26,9 @@
   height: 40vh;
 }
 
+#navBar {
+  z-index: 9999
+}
 #navBar a {
   text-decoration: none;
   font-family: 'Lexend Deca Variable', Fallback, sans-serif;
@@ -63,3 +66,26 @@
 .pagBar > .page-item > .page-link{
   color: #282c34;
 }
+/* 
+.backdrop > .img {
+  filter: blur(5px); 
+} */
+
+.filmContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center center;
+  filter: blur(20px);
+  opacity: .35;
+  transform: scale(1.2);
+}
+
+.font-weight-bold {
+  font-weight: bold;
+  text-decoration: none;
+}
+

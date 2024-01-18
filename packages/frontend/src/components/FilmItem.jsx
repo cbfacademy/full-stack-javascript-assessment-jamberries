@@ -4,7 +4,9 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 
 const FilmItem = (props) => {
-   const [showOverview, setShowOverview] = useState(false)
+   const [showOverview, setShowOverview] = useState(false);
+   const [poster, setPoster] = useState();
+   const [filmURL, setFilmURL] = useState();
    
    const handleMouseEnter = e => {
       e.target.classList.add("blurPoster")
@@ -14,15 +16,15 @@ const FilmItem = (props) => {
       e.target.classList.remove("blurPoster")
       setShowOverview(false)
    }
-    const poster = (props.film.poster_path) ? `https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${props.film.poster_path}` : '../public/imageNotFound.png'
-   
-    let film_url = `/films/${props.film.tmdb_id}`
+
+   setPoster(`https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${props.film.poster_path}`)
+   setFilmURL(`/films/${props.film.tmdb_id}`)
 
    return (
     <Col>
      
          <Card hoverable key={props.film._id} className="filmCard">
-            <Link to={film_url}> 
+            <Link to={filmURL}> 
                <Card.Img variant="top" src={poster} alt={props.film.title} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseleave}/>
             </Link>
             <Card.Body>
