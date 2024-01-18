@@ -28,13 +28,12 @@ export default function Genres() {
                 <Col md={{ span: 6, offset: 3 }}>
                 </Col>
             </Row>
-                <Col>
-                <div className="genreDiv">
-                    <GenreButton genres={genres}/>
-                </div>
-                </Col>
             <Row>
-
+            <Col md={{ span: 10, offset: 1 }}>
+                    <div className="genreDiv">
+                        <GenreButton genres={genres}/>
+                    </div>
+                </Col>
             </Row>
             
         </Container>
