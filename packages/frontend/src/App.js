@@ -8,14 +8,7 @@ import Films from './pages/Films';
 import FilmDetail from './pages/FilmDetail';
 
 //import Footer from './components/Footer';
-/*
-function App() {
-  return (
-    <div className="App">
-      <h1>{message}</h1>
-    </div>
-  );
-}*/
+
 const api_url = process.env.REACT_APP_API_URL
 
 function App() {

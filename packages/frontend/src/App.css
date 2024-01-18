@@ -81,7 +81,7 @@
   background-position: center center;
   filter: blur(20px);
   opacity: .35;
-  transform: scale(1.2);
+  z-index: -99999;
 }
 
 .font-weight-bold {
