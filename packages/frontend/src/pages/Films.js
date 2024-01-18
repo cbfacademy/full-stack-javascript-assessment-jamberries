@@ -38,11 +38,14 @@ export default function Films() {
                 </Col>
             </Row>
             <Row>
-                <FilmList films={films}/>
+                <Col md={{ span: 6, offset: 3 }}>
+                    <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+                </Col>
             </Row>
             <Row>
-                <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+                <FilmList films={films}/>
             </Row>
+            
         </Container>
     )
 }
