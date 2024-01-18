@@ -22,14 +22,6 @@ export default function Films() {
     })
     .catch(error => console.error(error));
     }, [pageNumber]);
-
-    // const goToPreviousPage = () => {
-    //     setPageNumber(Math.max(0, pageNumber -1));
-    // }
-
-    // const goToNextPage = () => {
-    //     setPageNumber(Math.min(noOfPages -1, pageNumber +1));
-    // };
     return (
         <Container fluid>
             <Row>
