@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from "react-bootstrap/Col";
 
-const Film = (props) => {
+const FilmItem = (props) => {
    const [showOverview, setShowOverview] = useState(false)
    
    const handleMouseEnter = e => {
@@ -28,4 +28,4 @@ const Film = (props) => {
    );
 }
 
-export default Film;
+export default FilmItem;

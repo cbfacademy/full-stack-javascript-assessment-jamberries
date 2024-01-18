@@ -3,27 +3,25 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FilmList from "../components/FilmList";
+import PaginationBar from "../components/PaginationBar";
 
 const api_url = process.env.REACT_APP_API_URL
 
 export default function Films() {
     const [films, setFilms] = useState([]);
-    // const [pageNumber, setPageNumber] = useState(0);
-    // const [noOfPages, setNoOfPages] = useState(0);
+    const [pages, setPages] = useState(0);
+    const [pageNumber, setPageNumber] = useState(0);
 
-    // const pages = new Array(noOfPages).fill(null).map((v,i) => i)
 
     useEffect(() => {
-      //  fetch(process.env.REACT_APP_API_URL + `/api/films?page=${pageNumber}`)
-      fetch(`${api_url}api/films`)
+      fetch(`${api_url}/api/films?page=${pageNumber}`)
       .then(res => res.json({}))
-        .then(({films, pages}) => {
-            setFilms(films)
-          //  setNoOfPages(pages);
-        })
-        .catch(error => console.error(error));
-    }, []); 
-    //}, [pageNumber]);
+      .then(({films, pages}) => {
+        setFilms(films)
+        setPages(pages);
+    })
+    .catch(error => console.error(error));
+    }, [pageNumber]);
 
     // const goToPreviousPage = () => {
     //     setPageNumber(Math.max(0, pageNumber -1));
@@ -43,9 +41,7 @@ export default function Films() {
                 <FilmList films={films}/>
             </Row>
             <Row>
-                <Col>
-                
-                </Col>
+                <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
             </Row>
         </Container>
     )

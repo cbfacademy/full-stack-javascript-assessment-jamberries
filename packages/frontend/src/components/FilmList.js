@@ -1,5 +1,5 @@
 import React  from "react";
-import Film from './Film';
+import Film from './FilmItem';
 
 function FilmList(props) {
    
