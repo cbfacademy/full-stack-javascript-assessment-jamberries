@@ -41,7 +41,7 @@ export default function FilmDetail() {
                             <p><ins className="font-weight-bold">{film.vote_average}</ins>/10</p>
                             <p> <ins className="font-weight-bold">Release Date:</ins> {new Date(film.release_date).getUTCFullYear()}</p>
                             <p className="">{film.overview}</p>
-                            <GenreButton key={film.id} genres={film.genres} filmId={film.imdb_id}/>
+                            <GenreButton key={film.id} genres={film.genres}/>
                         </Col>
                 </Row>
             </Container>

@@ -5,7 +5,6 @@ function FilmList(props) {
    
     return (
         props.films.map(film => <Film key={film._id} film={film}/>)
-        
     )
 }
 

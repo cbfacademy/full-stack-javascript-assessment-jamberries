@@ -5,7 +5,11 @@ import Container from "react-bootstrap/Container";
 
 export default function NavigationBar() {
     return (
-        <Navbar expand="lg" bg="light" data-bs-theme="light" id="navBar">
+        <Navbar 
+            expand="lg" 
+            bg="light" 
+            data-bs-theme="light" 
+            id="navBar">
             <Container>
                 <Navbar.Brand href="#home">The Database</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

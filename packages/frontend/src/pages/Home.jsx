@@ -7,7 +7,7 @@ export default function Home() {
         <Container fluid>
             <Row className="banner">
                 <Col data-bs-theme="dark">
-                <h1>Home</h1>
+                <h1 className="header mt-4"> Home</h1>
                 </Col>
             </Row>
             <Row>

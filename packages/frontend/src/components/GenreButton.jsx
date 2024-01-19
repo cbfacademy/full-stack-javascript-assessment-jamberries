@@ -1,12 +1,20 @@
 import React  from "react";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 function GenreButton(props) {
+
+    const query = '&&genre='
    
     return (
-        props.genres.map(genre => 
+        props.genres.map((genre,index) => 
             <>
-        <Button variant="outline-dark" key={props.filmId+genre.id}>{genre.name}</Button>{' '}
+        <Button 
+            className="genreButton my-2" 
+            variant="outline-dark" 
+            key={genre.id+index}
+            onClick={(e) => props.setGenreQuery(query + e.target.value)}
+            value={genre.tmdb_id}>{genre.name}
+            </Button>{' '}
         </>)
         
     )
