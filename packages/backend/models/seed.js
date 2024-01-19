@@ -6,9 +6,12 @@ const GenreModel = require('./GenreModel.js');
 const db = process.env.MONGO_URI;
 const authToken = process.env.TMDB_TOKEN
 
+const actor = 0
+
 const apiKey = process.env.TMDB_KEY
-const filmUrl = [`https://api.themoviedb.org/3/person/2888/movie_credits?api_key=${apiKey}&?language=en-US`];
-const genreUrl = [`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`]
+const actorCreditsUrl = [`${process.env.TMDB_ACTOR_CREDITS_URL}${actor}/movie_credits?api_key=${apiKey}&?language=en-US`];
+const genreUrl = [`${process.env.TMDB_GENRE_URL}?api_key=${apiKey}`]
+const movieUrl = [`${process.env.TMDB_MOVIE_URL}?api_key=${apiKey}`]
 
 
 const fetch = require("node-fetch");
@@ -23,8 +26,6 @@ const options = {
 
 let filmData;
 let filmCounter = 0;
-let genreData;
-let genreCounter = 0;
 
 mongoose.connect(db)
 .then(() => console.log("mongodb connection success"))
@@ -32,15 +33,6 @@ mongoose.connect(db)
 .then(()=> createDB())
 //.then(() => process.exit())
 .catch(error => console.log(error));
-
-
-/* 
-Create an array or urls using actor person_id
- - iterate over actor ids in db - retrieve array of ids
-For each id in array, perform fetch. If tmdb_id exists already, ignore
-
-Possibly ignore credits with character: Self (archive footage)
-*/
 
 function createDB () {
 
@@ -65,9 +57,9 @@ function createDB () {
   //   }
   // })
 
-  filmUrl.map(async filmUrl => {
+  actorCreditsUrl.map(async actorCreditsUrl => {
     try {
-      const response = await fetch(filmUrl, options);
+      const response = await fetch(actorCreditsUrl, options);
       const filmJson = await response.json();
       filmData = filmJson.cast;
 
@@ -132,7 +124,16 @@ function createDB () {
     }
 
 function getURLarray () {
-  //let url = [`https://api.themoviedb.org/3/person/19492/movie_credits?api_key=${apiKey}&?language=en-US`];
+  /* 
+Create an array or urls using actor person_id
+ - iterate over actor ids in db - retrieve array of ids
+For each id in array, perform fetch. If tmdb_id exists already, ignore
+
+Possibly ignore credits with character: Self (archive footage)
+*/
+
+  //const actorCreditsUrl = [`${process.env.TMDB_ACTOR_CREDITS_URL}${actor}/movie_credits?api_key=${apiKey}&?language=en-US`];
+
   // will need different model for actors
 
   // const finder = ActorsModel.find({

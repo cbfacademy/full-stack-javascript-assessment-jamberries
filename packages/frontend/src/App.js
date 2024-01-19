@@ -7,6 +7,8 @@ import "@fontsource/lexend-deca";
 import Home from './pages/Home';
 import Films from './pages/Films';
 import FilmDetail from './pages/FilmDetail';
+import Actors from './pages/Actors';
+import ActorDetail from "./pages/ActorDetail";
 //import Footer from './components/Footer';
 
 const api_url = process.env.REACT_APP_API_URL
@@ -28,6 +30,8 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/films' element={<Films/>}></Route>
         <Route path='/films/:id' element={<FilmDetail/>}></Route>
+        <Route path='/actors' element={<Actors/>}></Route>
+        <Route path='/actors/:id' element={<ActorDetail/>}></Route>
       </Routes>
       <div>{data.age}</div>
     </div>

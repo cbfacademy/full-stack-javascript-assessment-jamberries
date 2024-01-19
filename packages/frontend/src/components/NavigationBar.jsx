@@ -17,6 +17,7 @@ export default function NavigationBar() {
                     <Nav className="me-auto">
                         <Nav.Link as={NavLink} to="/">Home</Nav.Link>
                         <Nav.Link as={NavLink} to="/films">Films </Nav.Link>
+                        <Nav.Link as={NavLink} to="/actors">Actors</Nav.Link>
                     </Nav>
                     </Navbar.Collapse>
             </Container>

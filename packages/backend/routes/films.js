@@ -45,7 +45,8 @@ router.get('/api/genres', async (req, res) => {
 router.get('/api/films', async (req, res) => {
    try {
       const page = parseInt(req.query.page || "0")
-      const query = !req.query.genre ? {} : {genres : parseInt(req.query.genre)}
+    //  const query = !req.query.genre ? {actor_count : {$gt : 1}} : {actor_count : {$gt : 1}, genres : parseInt(req.query.genre)}
+      const query = !req.query.genre ? {} :{ genres : parseInt(req.query.genre)}
       const pageSize = 18;
       const totalFilms = await Films.countDocuments({})
       const films = await Films.find(query)
