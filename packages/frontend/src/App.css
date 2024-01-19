@@ -49,6 +49,11 @@
   text-overflow: ellipsis;
 }
 
+.actorCard > a , .filmCard > a{
+  color:#ff5501;
+  text-decoration: none;
+}
+
 .pagBar > .active > .page-link{
   background-color: #ff5501;
   border-color: #ff5501;
@@ -90,3 +95,7 @@
   border-radius: 25px !important;
 }
 
+.buttonLink {
+  text-decoration: none !important;
+  color:#ff5501 !important;
+}

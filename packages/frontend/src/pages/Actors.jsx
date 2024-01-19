@@ -1,15 +1,16 @@
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ActorsList from "../components/ActorsList";
 import PaginationBar from "../components/PaginationBar";
-
-export default function Actors() {
+import Button from "react-bootstrap/Button";
 
 const api_url = process.env.REACT_APP_API_URL
 
+export default function Actors() {
     const [actors, setActors] = useState([]);
     const [pages, setPages] = useState(0);
     const [pageNumber, setPageNumber] = useState(0);
@@ -32,8 +33,8 @@ const api_url = process.env.REACT_APP_API_URL
                 </Col>
             </Row>
             <Row>
-                <Col md={{ span: 10, offset: 1 }}>
-         
+                <Col md={{ span: 4, offset:8}}>
+                    <Button className="buttonLink" variant="link" as={Link} to="/actor-new"> + Add an actor</Button>{' '}
                 </Col>
             </Row>
             <Row className="mt-4">

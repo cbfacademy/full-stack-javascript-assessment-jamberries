@@ -7,7 +7,6 @@ const Item = (props) => {
    return (
     <Col md={2}>
          <Card 
-            hoverable
             className={props.cardClassName}
             key={props.item._id} 
             border="light">
