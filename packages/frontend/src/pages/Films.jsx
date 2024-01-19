@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import FilmList from "../components/FilmList";
 import PaginationBar from "../components/PaginationBar";
 import GenreButton from "../components/GenreButton";
@@ -35,27 +35,24 @@ export default function Films() {
       }, []);
 
     return (
-        <Container fluid>
-            <Row>
-                <Col>
-                <h1 className="header mt-4"> Films</h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col md={{ span: 10, offset: 1 }}>
-                    <div className="genreDiv">
-                        <GenreButton genres={genres} setGenreQuery={setGenreQuery}/>
-                    </div>
-                </Col>
-            </Row>
-            <Row className="mt-4">
-                <FilmList films={films}/>
-            </Row>
-            <Row>
-                <Col>
-                    <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
-                </Col>
-            </Row>
+        <Container>
+            <Box>
+                <Grid>
+                    <h1> Films</h1>
+                </Grid>
+                <Grid md={{ span: 10, offset: 1 }}>
+                        <Box className="genreDiv">
+                            <GenreButton genres={genres} setGenreQuery={setGenreQuery}/>
+                        </Box>
+                </Grid>
+                <Grid >
+                    <FilmList films={films}/>
+                </Grid>
+                <Grid>
+                        <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+                </Grid>
+            </Box>
+            
         </Container>
     )
 }
