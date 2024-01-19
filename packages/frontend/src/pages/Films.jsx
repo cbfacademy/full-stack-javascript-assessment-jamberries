@@ -42,7 +42,7 @@ export default function Films() {
                 </Grid>
                 <Grid md={{ span: 10, offset: 1 }}>
                         <Box className="genreDiv">
-                            <GenreButton genres={genres} setGenreQuery={setGenreQuery}/>
+                            <GenreButton genres={genres} setGenreQuery={setGenreQuery} source={'films'}/>
                         </Box>
                 </Grid>
                 <Grid >

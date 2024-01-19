@@ -7,15 +7,12 @@ import "@fontsource/lexend-deca";
 import Home from './pages/Home';
 import Films from './pages/Films';
 import FilmDetail from './pages/FilmDetail';
-//import Actors from './pages/Actors';
-//import ActorDetail from "./pages/ActorDetail";
-import ActorNew from "./pages/ActorNew";
+import Actors from './pages/Actors';
+import ActorDetail from "./pages/ActorDetail";
+// import ActorNew from "./pages/ActorNew";
 
 //import Footer from './components/Footer';
 
-<Route path='/actors' element={<Actors/>}></Route>
-<Route path='/actors/:id' element={<ActorDetail/>}></Route>
-<Route path='/actor-new' element={<ActorNew/>}></Route>
 const api_url = process.env.REACT_APP_API_URL
 
 function App() {
@@ -33,11 +30,11 @@ function App() {
       <NavigationBar/>
       <Routes> {/* The Switch decides which component to show based on the current URL.*/}
         <Route path='/' element={<Home/>}></Route>
-        <Route path='/films' element={<Films/>}></Route>
+        <Route path='/films' element={<Films setGenreQuery={setGenreQuery}/>}></Route>
         <Route path='/films/:id' element={<FilmDetail/>}></Route>
         <Route path='/actors' element={<Actors/>}></Route>
         <Route path='/actors/:id' element={<ActorDetail/>}></Route>
-        <Route path='/actor-new' element={<ActorNew/>}></Route>
+        {/* <Route path='/actor-new' element={<ActorNew/>}></Route> */}
       </Routes>
       <div>{data.age}</div>
     </div>

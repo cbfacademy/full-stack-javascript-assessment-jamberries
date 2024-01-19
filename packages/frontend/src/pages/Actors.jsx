@@ -1,9 +1,9 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import ActorsList from "../components/ActorsList";
 import PaginationBar from "../components/PaginationBar";
 import Button from "react-bootstrap/Button";
@@ -26,25 +26,21 @@ export default function Actors() {
       }, [pageNumber]);
 
     return (
-        <Container fluid>
-            <Row>
-                <Col>
-                <h1 className="header mt-4"> Actors</h1>
-                </Col>
-            </Row>
-            <Row>
-                <Col md={{ span: 4, offset:8}}>
+        <Container>
+            <Box>
+                <Grid>
+                    <h1> Actors</h1>
+                </Grid>
+                <Grid>
                     <Button className="buttonLink" variant="link" as={Link} to="/actor-new"> + Add an actor</Button>{' '}
-                </Col>
-            </Row>
-            <Row className="mt-4">
-                 <ActorsList actors={actors}/>
-            </Row>
-            <Row>
-                <Col md={{ span: 6, offset: 3 }}>
+                </Grid>
+                <Grid >
+                    <ActorsList actors={actors}/>
+                </Grid>
+                <Grid>
                     <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
-                </Col>
-            </Row>
+                </Grid>
+            </Box>
         </Container>
     )
 }

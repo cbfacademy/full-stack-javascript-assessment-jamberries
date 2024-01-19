@@ -7,13 +7,13 @@ export default function Home() {
     <Container>
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                     <h1 className="header mt-4"> Home</h1>
                 </Grid>
-                <Grid xs={6} md={6}>
+                <Grid item xs={6} md={6}>
                     <h1 className="header mt-4"> Home</h1>
                 </Grid>
-                <Grid xs={6} md={6}>
+                <Grid item xs={6} md={6}>
                     <h1 className="header mt-4"> Home</h1>
                 </Grid>
             </Grid>

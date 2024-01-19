@@ -18,6 +18,9 @@ const theme = createTheme({
     secondary: {
       main: '#ff5501',
     },
+    info: {
+      main: '#292726',
+    },
     divider: 'rgba(0,0,0,0.12)',
   },
 })
