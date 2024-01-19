@@ -13,6 +13,7 @@ export default function Films() {
     const [pages, setPages] = useState(0);
     const [pageNumber, setPageNumber] = useState(0);
     const [genres, setGenres] = useState([]);
+    const [genreQuery, setGenreQuery] = useState({});
 
     useEffect(() => {
       fetch(`${api_url}/api/films?page=${pageNumber}`)
@@ -24,6 +25,16 @@ export default function Films() {
     .catch(error => console.error(error));
     }, [pageNumber]);
 
+    // useEffect(() => {
+    //     fetch(`${api_url}/api/films?page=${pageNumber}?genre=${genreQuery}`)
+    //     .then(res => res.json({}))
+    //     .then(({films, pages}) => {
+    //       setFilms(films)
+    //       setPages(pages);
+    //   })
+    //   .catch(error => console.error(error));
+    //   }, [pageNumber]);
+
     useEffect(() => {
         fetch(`${api_url}/api/genres`)
         .then(res => res.json({}))
@@ -32,6 +43,7 @@ export default function Films() {
       })
       .catch(error => console.error(error));
       }, []);
+
 
     return (
         <Container fluid>

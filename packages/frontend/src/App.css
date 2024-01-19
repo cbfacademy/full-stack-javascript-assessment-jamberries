@@ -36,6 +36,7 @@
 .filmCard{
   width: 13rem;
   margin-bottom: 2rem;
+  border: none;
 }
 
 .blurPoster {
