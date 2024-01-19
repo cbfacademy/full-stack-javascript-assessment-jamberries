@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Routes } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar"
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import "@fontsource/lexend-deca"; 
 import Home from './pages/Home';
 import Films from './pages/Films';
@@ -10,6 +10,7 @@ import FilmDetail from './pages/FilmDetail';
 import Actors from './pages/Actors';
 import ActorDetail from "./pages/ActorDetail";
 import ActorNew from "./pages/ActorNew";
+
 //import Footer from './components/Footer';
 
 const api_url = process.env.REACT_APP_API_URL
