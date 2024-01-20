@@ -6,14 +6,13 @@ import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
 const Item = (props) => {
-   const image = props.image !== 'undefined' ? props.image : "/img/imageNotFound.png"
+   const image = props.image !== null ? props.image : "/img/imageNotFound.png"
   return (
         <ImageListItem key={props.image}>
           <img
             srcSet={`${image}?w=248&fit=crop&auto=format&dpr=2 2x`}
             src={`${image}?w=248&fit=crop&auto=format`}
             alt={props.title}
-            onError={(e)=>{e.target.src="/img/imageNotFound.png"}}
             loading="lazy"
           />
           <ImageListItemBar

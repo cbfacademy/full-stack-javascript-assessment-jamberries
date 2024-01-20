@@ -1,12 +1,17 @@
 import Button from '@mui/material/Button';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function GenreButton(props) {
 
     const query = '&&genre='
+
+    const handleGenreClick = (e) => {
+        props.setGenreQuery(query + e.target.value)
+    }
     const properties = {
-        component: Link,
-        to: '/films'
+        // component: Link,
+        // to: '/films'
+        onClick : handleGenreClick
     };
 
     return (
@@ -17,8 +22,7 @@ function GenreButton(props) {
             variant="outlined" 
             color="info"
             key={genre.id+index}
-            onClick={(e) => props.setGenreQuery(query + e.target.value)}
-            {...(props.source === 'filmdetails'? properties : {})}
+            {...(props.source === 'films'? properties : {})}
             value={genre.tmdb_id}>{genre.name}
             </Button>{' '}
         </>)

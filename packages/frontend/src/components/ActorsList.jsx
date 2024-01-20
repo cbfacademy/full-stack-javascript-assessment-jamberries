@@ -12,7 +12,7 @@ function ActorsList(props) {
                     cardClassName="actorCard" 
                     textCardClass="actorTitle"
                     link={`/actors/${actor.tmdb_id}`}
-                    image={`https://media.themoviedb.org/t/p/w138_and_h175_face/${actor.poster_path}`}
+                    image={actor.profile_path ? `https://media.themoviedb.org/t/p/w138_and_h175_face/${actor.profile_path}` : null}
                 />
              )}
         </ImageList>
