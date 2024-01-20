@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Films = require("../models/FilmsModel");
 const Genre = require("../models/GenreModel");
+const Films = require('../models/FilmsModel.js');
+const lib = require('../lib/lib')
 
 // router.get('/api/films', async (req, res) => {
 //  try {
@@ -45,7 +46,8 @@ router.get('/api/genres', async (req, res) => {
 router.get('/api/films', async (req, res) => {
    try {
       const page = parseInt(req.query.page || "0")
-      const query = !req.query.genre ? {} : {genres : parseInt(req.query.genre)}
+    //  const query = !req.query.genre ? {actor_count : {$gt : 1}} : {actor_count : {$gt : 1}, genres : parseInt(req.query.genre)}
+      const query = !req.query.genre ? {} :{ genres : parseInt(req.query.genre)}
       const pageSize = 18;
       const totalFilms = await Films.countDocuments({})
       const films = await Films.find(query)
@@ -63,6 +65,18 @@ router.get('/api/films', async (req, res) => {
    }
 })
 
+router.post('/api/films', async (req, res) => {
+   try {
+      const array = req.body.map( item => item.id)
+      const actorIdArray= array.map(item => {
+         return `${process.env.TMDB_ACTOR_CREDITS_URL}${item}/movie_credits?api_key=${process.env.TMDB_KEY}`
+     })
+     lib.databaseFunction(actorIdArray)
+   } catch (error) {
+      console.error(error)
+      res.status(500).send("Server Error")
+   }
+})
 
 
 module.exports = router

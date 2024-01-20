@@ -1,25 +1,143 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
+import AppBar from '@mui/material/AppBar';
+import Container from '@mui/material/Container';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import TheatersIcon from '@mui/icons-material/Theaters';
+import IconButton from '@mui/material/IconButton';
 
-export default function NavigationBar() {
-    return (
-        <Navbar 
-            expand="lg" 
-            bg="light" 
-            data-bs-theme="light" 
-            id="navBar">
-            <Container>
-                <Navbar.Brand href="#home">The Database</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link as={NavLink} to="/">Home</Nav.Link>
-                        <Nav.Link as={NavLink} to="/films">Films </Nav.Link>
-                    </Nav>
-                    </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
+const pages = [
+    {text: 'Home', to: '/'}, 
+    {text: 'Films',  to: '/films'}, 
+    {text: 'Actors',  to: '/actors'}
+];
+
+function NavigationBar() {
+  const [anchorNav, setAnchorNav] = useState();
+
+  const handleOpenNavMenu = (e) => {
+    setAnchorNav(e.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorNav(null);
+  };
+
+  return (
+    <AppBar position="static" id="navBar">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <TheatersIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'Lexend Deca',
+              fontWeight: 700,
+              letterSpacing: '.1rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+             The Database
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page.text} onClick={handleCloseNavMenu}>
+                  <Typography 
+                    textAlign="center"
+                    sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontFamily: 'Lexend Deca',
+                        fontWeight: 700,
+                        letterSpacing: '.1rem',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                    }}
+                    ><NavLink to={page.to}>{page.text}</NavLink>
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <TheatersIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'Lexend Deca',
+              fontWeight: 700,
+              letterSpacing: '.1rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            The Database
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page.text}
+                onClick={handleCloseNavMenu}
+                sx={{
+                    mr: 2,
+                    display: { xs: 'none', md: 'flex' },
+                    fontFamily: 'Lexend Deca',
+                    fontWeight: 700,
+                    letterSpacing: '.1rem',
+                    color: 'inherit',
+                    textDecoration: 'none',
+                  }}
+              >
+                <NavLink to={page.to}>{page.text}</NavLink>
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }
+export default NavigationBar;
