@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { Route, Routes } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar"
 import "./App.css";
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import "@fontsource/lexend-deca"; 
 import Home from './pages/Home';
 import Films from './pages/Films';
