@@ -18,10 +18,13 @@ const theme = createTheme({
     secondary: {
       main: '#ff5501',
     },
+    divider: 'rgba(0,0,0,0.12)',
     info: {
       main: '#292726',
     },
-    divider: 'rgba(0,0,0,0.12)',
+  },
+  typography: {
+    fontFamily: 'Lexend Deca',
   },
 })
 
