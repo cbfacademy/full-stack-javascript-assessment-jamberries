@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ActorForm from "../components/ActorForm";
+import AutocompleteInput from "../components/AutocompleteInput";
 
 const api_url = process.env.REACT_APP_API_URL
 
@@ -34,7 +34,7 @@ export default function ActorNew() {
                 </Col>
             </Row>
             <Row className="mt-4">
-                <ActorForm/>
+                <AutocompleteInput/>
             </Row>
         </Container>
     )

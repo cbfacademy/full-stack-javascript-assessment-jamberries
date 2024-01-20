@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Box from '@mui/material/Box';
@@ -12,15 +12,23 @@ const tmdb_api = `?api_key=${process.env.REACT_APP_TMDB_KEY}`
 export default function ActorDetail() {
     const { id } = useParams();
     const [actor, setActor] = useState(null);
+
+    const fetchActorItem = useMemo(() => async () => {
+        try {
+            fetch(`${tmdb_url}${id}${tmdb_api}`)
+            .then(res => res.json({}))
+            .then((actor) => {
+              setActor(actor)
+          })
+          .catch(error => console.error(error))
+        } catch (error) {
+          console.error('Error fetching product list:', error);
+        }
+       }, [id]);
     
-    useEffect(() => {
-     fetch(`${tmdb_url}${id}${tmdb_api}`)
-      .then(res => res.json({}))
-      .then((actor) => {
-        setActor(actor)
-    }, [])
-    .catch(error => console.error(error))
-    });
+        useEffect(() => {
+            fetchActorItem();
+        }, [fetchActorItem]);
 
     if (actor) {
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -9,20 +9,26 @@ import GenreButton from '../components/GenreButton';
 const tmdb_url = process.env.REACT_APP_TMDB_MOVIE_URL
 const tmdb_api = `?api_key=${process.env.REACT_APP_TMDB_KEY}`
 
-
 export default function FilmDetail() {
     const { id } = useParams();
     const [film, setFilm] = useState(null);
 
-    useEffect(() => {
-      //fetch(`${api_url}/api/films/${id}`)
-     fetch(`${tmdb_url}${id}${tmdb_api}`)
-      .then(res => res.json({}))
-      .then((film) => {
-        setFilm(film)
-    }, [])
-    .catch(error => console.error(error))
-    });
+    const fetchFilmItem = useMemo(() => async () => {
+        try {
+            fetch(`${tmdb_url}${id}${tmdb_api}`)
+            .then(res => res.json({}))
+            .then((film) => {
+            setFilm(film)
+          })
+          .catch(error => console.error(error))
+        } catch (error) {
+          console.error('Error fetching product list:', error);
+        }
+       }, [id]);;
+    
+        useEffect(() => {
+            fetchFilmItem();
+        }, [fetchFilmItem]);
     
     if (film) {
         return (

@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useMemo} from "react";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,7 +15,8 @@ export default function Films() {
     const [genres, setGenres] = useState([]);
     const [genreQuery, setGenreQuery] = useState('');
 
-    useEffect(() => {
+  const fetchFilmList = useMemo(() => async () => {
+    try {
         fetch(`${api_url}/api/films?page=${pageNumber}${genreQuery}`)
         .then(res => res.json({}))
         .then(({films, pages}) => {
@@ -23,16 +24,32 @@ export default function Films() {
           setPages(pages)
       })
       .catch(error => console.error(error))
-      }, [pageNumber, genreQuery]);
+    } catch (error) {
+      console.error('Error fetching product list:', error);
+    }
+   }, [pageNumber, genreQuery]);;
 
     useEffect(() => {
-        fetch(`${api_url}/api/genres`)
-        .then(res => res.json({}))
-        .then((genres) => {
-          setGenres(genres)
-      })
-      .catch(error => console.error(error))
-      }, []);
+        fetchFilmList();
+    }, [fetchFilmList]);
+
+
+    const fetchGenreList = useMemo(() => async () => {
+        try {
+            fetch(`${api_url}/api/genres`)
+            .then(res => res.json({}))
+            .then((genres) => {
+            setGenres(genres)
+        })
+        .catch(error => console.error(error))
+        } catch (error) {
+        console.error('Error fetching product list:', error);
+        }
+    }, []);;
+
+    useEffect(() => {
+        fetchGenreList();
+    }, [fetchGenreList]);
 
     return (
         <Container>
