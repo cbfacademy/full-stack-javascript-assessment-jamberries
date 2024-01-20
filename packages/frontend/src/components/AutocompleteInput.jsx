@@ -9,8 +9,6 @@ import {
   Box
 } from "@mui/material";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
-
 
 const tmdb_url = process.env.REACT_APP_TMDB_SEARCH_URL
 const tmdb_api = `&api_key=${process.env.REACT_APP_TMDB_KEY}`

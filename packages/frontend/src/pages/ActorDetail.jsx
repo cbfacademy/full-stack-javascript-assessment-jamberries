@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Image from 'react-bootstrap/Image';
 
 const tmdb_url = process.env.REACT_APP_TMDB_ACTOR_URL
 const tmdb_api = `?api_key=${process.env.REACT_APP_TMDB_KEY}`

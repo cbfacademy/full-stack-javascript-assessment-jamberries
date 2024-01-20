@@ -26,7 +26,6 @@ export default function ActorNew() {
                         <AutocompleteInput setSelected={setSelected}/>
                     </Grid>
                     <Grid item md={6}>
-                    <Button variant="outlined">Outlined</Button>
                         <Button variant="outlined" > Add Actors to the Database </Button> 
                     </Grid>
                 </Grid>
