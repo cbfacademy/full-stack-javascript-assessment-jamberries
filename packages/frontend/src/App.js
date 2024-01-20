@@ -13,17 +13,17 @@ import ActorNew from "./pages/ActorNew";
 
 //import Footer from './components/Footer';
 
-const api_url = process.env.REACT_APP_API_URL
+// const api_url = process.env.REACT_APP_API_URL
 
 function App() {
 
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
-  useEffect(() => {
-    fetch(`${api_url}`)
-      .then(res => res.json())
-      .then(data => setData(data))
-  }, [])
+  // useEffect(() => {
+  //   fetch(`${api_url}`)
+  //     .then(res => res.json())
+  //     .then(data => setData(data))
+  // }, [])
 
   return (
     <div className="App">
@@ -36,7 +36,7 @@ function App() {
         <Route path='/actors/:id' element={<ActorDetail/>}></Route>
         <Route path='/actor-new' element={<ActorNew/>}></Route>
       </Routes>
-      <div>{data.age}</div>
+      {/* <div>{data.age}</div> */}
     </div>
   );
 }

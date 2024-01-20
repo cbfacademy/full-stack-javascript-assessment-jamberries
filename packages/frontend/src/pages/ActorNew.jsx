@@ -8,35 +8,27 @@ import {
 import ActorCard from "../components/ActorCard";
 import Popup from "../components/Popup";
 import AutocompleteInput from "../components/AutocompleteInput";
+import  SnackbarAlert  from "../components/SnackbarAlert";
 
 const api_url = process.env.REACT_APP_API_URL
 
 export default function ActorNew() {
     const [selected, setSelected] = useState({})
     const [open, setOpen] = useState(false);
+    const [openSnack, setOpenSnack] = useState(false);
+    const [dbMessage, setdbmessage] = useState('')
 
-      const postActors = async () => {
-            try {
-                fetch(`${api_url}/api/actors`, {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(selected)
-                  })
-                .then(res => res.json({}))
-                .then((data) => {
-                  if(data.data === 'Success') {
-                    postFilms()
-                  }})
-            } catch (error) {
-                console.error('Error:', error);
-            }
-            }
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(selected)
+        }
 
-    const postFilms = async () => {
+    const postActors = async () => {
         try {
-            fetch(`${api_url}/api/films`, {
+            fetch(`${api_url}/api/actors`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,23 +38,44 @@ export default function ActorNew() {
             .then(res => res.json({}))
             .then((data) => {
                 if(data.data === 'Success') {
-                console.log('success')
+                postFilms()
                 }})
         } catch (error) {
             console.error('Error:', error);
         }
         }
+
+    const postFilms = async () => {
+        try {
+            fetch(`${api_url}/api/films`, options)
+            .then(res => res.json({}))
+            .then((data) => {
+                if(data.dbmessage === 'success') {
+                    setOpenSnack(true)
+                    setdbmessage('success')
+                } else {
+                    setdbmessage('fail')
+                }
+            })
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        }
+
     const handleActorAddClick = (event) => {
       setOpen((previousOpen) => !previousOpen);
     };
 
     const handleClose = (e) => {
-        if(e.target.innerText === 'Confirm') {
+        if(e.target.innerText === 'CONFIRM') {
             setOpen(false);
+            console.log(e.target.innerText)
             postActors();
 
         } else {
             setOpen(false);
+            console.log('bye')
+            console.log(e.target.innerText)
         }
       };
 
@@ -76,6 +89,7 @@ export default function ActorNew() {
 
     return (
         <Container >
+            <SnackbarAlert setOpenSnack={setOpenSnack} props={openSnack} dbMessage={dbMessage}/>
             <Box>
                 <Grid item md={6} justifyContent="center">
                     <h1 className="header mt-4"> Add an actor to the database</h1>

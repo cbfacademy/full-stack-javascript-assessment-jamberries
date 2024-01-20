@@ -57,14 +57,12 @@ const databaseFunction = (actorIdArray) => {
   
             filmCounter++;
           
-            // if (filmCounter === filmData.length) {         
-            //   mongoose.disconnect()
-              
-              
-            //   .catch(error => console.log(error));     
-  
-            //   break;  
-            // } 
+            if (filmCounter === filmData.length) {         
+                   res.send({dbmessage:'success'})
+              break;  
+            } else {
+                res.send({dbmessage : 'error'})
+            }
           }
         }
       }
