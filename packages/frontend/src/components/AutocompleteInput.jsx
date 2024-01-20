@@ -38,7 +38,6 @@ export default function AutocompleteInput(props) {
     }, [inputValue, setOptions]);
 
     const handleChange = (event, value) => {
-      console.log(value)
     props.setSelected(value)}
 
   return (

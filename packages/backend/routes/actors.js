@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Films = require("../models/FilmsModel");
 const Actors = require("../models/ActorsModel");
-
-
 
 router.get('/api/actors', async (req, res) => {
    try {
@@ -18,6 +15,31 @@ router.get('/api/actors', async (req, res) => {
       res.json({
         actors, 
         pages: Math.ceil(totalActors / pageSize)});
+   } catch (error) {
+      console.error(error)
+      res.status(500).send("Server Error")
+   }
+})
+
+router.post('/api/actors', async (req, res) => {
+   try {
+      const array = req.body.map( item => {
+         const { id: tmdb_id, ...rest } = item;
+         return { tmdb_id, ...rest }
+        }
+       );
+  
+      const actors = await Actors.insertMany(array)
+      .then(function () {
+         res.send({data:'Success'})
+         console.log("Data inserted") 
+     }).catch(function (error) {
+         console.log(error)     
+         res.send({data:'Success'})
+     });
+
+     
+    
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")

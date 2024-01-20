@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Films = require("../models/FilmsModel");
 const Genre = require("../models/GenreModel");
+const FilmsModel = require('../models/FilmsModel.js');
+const lib = require('../lib/lib')
 
 // router.get('/api/films', async (req, res) => {
 //  try {
@@ -64,6 +65,22 @@ router.get('/api/films', async (req, res) => {
    }
 })
 
+router.post('/api/films', async (req, res) => {
+   try {
+      console.log(req.body)
+      const array = req.body.map( item => item.id)
+      console.log(array)
+      const actorIdArray= array.map(item => {
+         return `${process.env.TMDB_ACTOR_CREDITS_URL}${item}/movie_credits?api_key=${process.env.TMDB_KEY}`
+     })
+     console.log(actorIdArray)
+     lib.databaseFunction(actorIdArray)
+
+   } catch (error) {
+      console.error(error)
+      res.status(500).send("Server Error")
+   }
+})
 
 
 module.exports = router
