@@ -13,7 +13,6 @@ const api_url = process.env.REACT_APP_API_URL
 
 export default function ActorNew() {
     const [selected, setSelected] = useState({})
-    const [idArray, setIdArray] = useState([])
     const [open, setOpen] = useState(false);
 
       const postActors = async () => {
@@ -28,11 +27,8 @@ export default function ActorNew() {
                 .then(res => res.json({}))
                 .then((data) => {
                   if(data.data === 'Success') {
-                    setIdArray(selected.map( item => item.id))
-                  }})
-                  .then((idArray) => {
                     postFilms()
-                  })
+                  }})
             } catch (error) {
                 console.error('Error:', error);
             }

@@ -57,7 +57,7 @@ export default function Films() {
                 <Grid>
                     <h1> Films</h1>
                 </Grid>
-                <Grid md={{ span: 10, offset: 1 }}>
+                <Grid container >
                         <Box className="genreDiv">
                             <GenreButton genres={genres} setGenreQuery={setGenreQuery} source={'films'}/>
                         </Box>
