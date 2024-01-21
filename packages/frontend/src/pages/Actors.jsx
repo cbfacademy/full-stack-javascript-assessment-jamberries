@@ -9,6 +9,10 @@ import Button from "react-bootstrap/Button";
 
 const api_url = process.env.REACT_APP_API_URL;
 
+/**
+ * Displays the page to view all actors in the database
+ * @returns {ReactComponentElement} List of actor page
+ */
 export default function Actors() {
     const [actors, setActors] = useState([]);
     const [pages, setPages] = useState(0);

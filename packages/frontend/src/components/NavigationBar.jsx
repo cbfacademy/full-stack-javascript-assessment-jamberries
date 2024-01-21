@@ -12,13 +12,17 @@ import MenuItem from '@mui/material/MenuItem';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import IconButton from '@mui/material/IconButton';
 
-
 const pages = [
     {text: 'Home', to: '/'}, 
     {text: 'Films',  to: '/films'}, 
     {text: 'Actors',  to: '/actors'}
 ];
 
+/**
+ * Component for the navigation of the app
+ * @component
+ * @returns {ReactComponentElement} Navigation bar
+ */
 function NavigationBar() {
   const [anchorNav, setAnchorNav] = useState(null);
 

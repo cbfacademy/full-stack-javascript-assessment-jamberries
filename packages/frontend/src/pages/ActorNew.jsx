@@ -12,6 +12,10 @@ import  SnackbarAlert  from "../components/SnackbarAlert";
 
 const api_url = process.env.REACT_APP_API_URL
 
+/**
+ * Displays the page to add a new actor to the database
+ * @returns {ReactComponentElement} New actor page
+ */
 export default function ActorNew() {
     const [selected, setSelected] = useState({})
     const [open, setOpen] = useState(false);

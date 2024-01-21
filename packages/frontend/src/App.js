@@ -10,13 +10,15 @@ import Actors from './pages/Actors';
 import ActorDetail from "./pages/ActorDetail";
 import ActorNew from "./pages/ActorNew";
 
+/**
+ * Displays the app. Routes handle which compnonet to show based on the current URL. 
+ * @returns {App} App
+ */
 function App() {
-
-
   return (
     <div className="App">
       <NavigationBar/>
-      <Routes> {/* The Switch decides which component to show based on the current URL.*/}
+      <Routes> 
         <Route path='/' element={<Home/>}></Route>
         <Route path='/films' element={<Films/>}></Route>
         <Route path='/films/:id' element={<FilmDetail/>}></Route>

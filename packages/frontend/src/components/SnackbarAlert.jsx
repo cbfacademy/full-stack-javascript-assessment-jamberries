@@ -1,14 +1,17 @@
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
+/**
+ * Component to show alert on database success
+ * @component
+ * @param {object} props The response details
+ * @returns {ReactComponentElement} Snackbar alert popup
+ */
 export default function SnackbarAlert(props) {
-
-
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     props.setOpenSnack(false);
   };
 

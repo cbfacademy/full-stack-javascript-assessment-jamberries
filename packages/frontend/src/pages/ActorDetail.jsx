@@ -7,7 +7,11 @@ import Grid from '@mui/material/Grid';
 const tmdb_url = process.env.REACT_APP_TMDB_ACTOR_URL
 const tmdb_api = `?api_key=${process.env.REACT_APP_TMDB_KEY}`
 
-
+/**
+ * Displays actor details
+ * @param {object} props
+ * @returns {ReactComponentElement} Actor Detail Page
+ */
 export default function ActorDetail() {
     const { id } = useParams();
     const [actor, setActor] = useState(null);
