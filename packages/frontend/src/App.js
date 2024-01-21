@@ -9,8 +9,6 @@ import Actors from './pages/Actors';
 import ActorDetail from "./pages/ActorDetail";
 import ActorNew from "./pages/ActorNew";
 
-//import Footer from './components/Footer';
-
 // const api_url = process.env.REACT_APP_API_URL
 
 function App() {

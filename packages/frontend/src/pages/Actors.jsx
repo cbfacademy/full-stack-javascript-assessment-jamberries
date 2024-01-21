@@ -16,7 +16,7 @@ export default function Actors() {
 
         useEffect(() => {
             const fetchActors = async () => {
-                const res = await fetch(`${api_url}/api/actors?page=${pageNumber}`);
+                const res = await fetch(`/${api_url}/api/actors?page=${pageNumber}`);
                 const data = await res.json();
                 setActors(data.actors)
                 setPages(data.pages)

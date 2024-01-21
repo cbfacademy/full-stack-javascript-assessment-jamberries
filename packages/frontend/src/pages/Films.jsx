@@ -17,7 +17,7 @@ export default function Films() {
 
         useEffect(() => {
             const fetchFilms = async () => {
-                const res = await fetch(`${api_url}/api/films?page=${pageNumber}${genreQuery}`);
+                const res = await fetch(`/${api_url}/api/films?page=${pageNumber}${genreQuery}`);
                 const data = await res.json()
                 setFilms(data.films)
                 setPages(data.pages);
@@ -27,7 +27,7 @@ export default function Films() {
 
       useEffect(() => {
         const fetchGenres = async () => {
-            const res = await fetch(`${api_url}/api/genres`);
+            const res = await fetch(`/${api_url}/api/genres`);
             const data = await res.json()
             setGenres(data)
         };

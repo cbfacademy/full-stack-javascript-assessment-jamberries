@@ -8,7 +8,7 @@ import {
 import FilmList from "../components/FilmList";
 import HomeCarousel from "../components/Carousel";
 
-const api_url = process.env.REACT_APP_API_URL
+const api_url = process.env.REACT_APP_API_URL;
 
 export default function Home() {
     const [films, setFilms] = useState([]);

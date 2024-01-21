@@ -3,6 +3,7 @@ const router = express.Router();
 const Actors = require("../models/ActorsModel");
 
 router.get('/api/actors', async (req, res) => {
+   try {
       const page = parseInt(req.query.page || "0")
       const pageSize = 18;
       const totalActors = await Actors.countDocuments({})
@@ -11,11 +12,13 @@ router.get('/api/actors', async (req, res) => {
       .limit(pageSize)
       .skip(pageSize * page);
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.json({
+      res.send({
         actors, 
         pages: Math.ceil(totalActors / pageSize)});
+   } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")
+   }
 })
 
 router.post('/api/actors', async (req, res) => {
@@ -29,13 +32,12 @@ router.post('/api/actors', async (req, res) => {
       const actors = await Actors.insertMany(array)
       .then(function () {
          res.setHeader("Access-Control-Allow-Origin", "*");
-         res.send({data:'Success'})
+         res.send('success')
          console.log("Data inserted") 
      }).catch(function (error) {
          console.log(error)     
-         res.send({data:'error'})
+         res.send("error")
      });
-
     
    } catch (error) {
       console.error(error)

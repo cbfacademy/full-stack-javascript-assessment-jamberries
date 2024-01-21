@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
-const path = require('path');
+// const { MongoClient, ServerApiVersion } = require("mongodb");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
@@ -13,25 +13,31 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//     version: ServerApiVersion.v1,
+//     strict: true,
+//     deprecationErrors: true,
+//   }
+// });
 
-const PORT = process.env.PORT || 8000;
+// client.connect((err) => {
+//   if (err) {
+//     console.error("Error connecting to MongoDB", err);
+//     return;
+//   }
+//   console.log("Connected to MongoDB");
+//   client.close();
+// });
 
 mongoose.connect(uri)
 .then(() => {
-
-
-  app.listen(PORT, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
-
-  })
+  console.log('Mongoose connection')
 })
 
-
-app.use(bodyParser.json({ }))
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-//app.use(express.static(path.join(__dirname, '../frontend/public')))
 
-  //client.close();
 // Specify all of the routes
 
 app.use('/', require('./routes/index'))
@@ -39,5 +45,9 @@ app.use('/api/films', require('./routes/films'))
 app.use('/api/genres', require('./routes/films'))
 app.use('/api/actors', require ('./routes/actors'))
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server started on http://localhost:${PORT}`);
+});
 
 module.exports = app
