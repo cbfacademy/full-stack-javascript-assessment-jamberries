@@ -42,7 +42,7 @@ export default function Actors() {
                     <Button className="buttonLink" variant="link" as={Link} to="/actor-new"> + Add an actor</Button>{' '}
                 </Grid>
                 <Grid >
-                    <ActorsList actors={actors}/>
+                    <ActorsList actors={actors} cols={5}/>
                 </Grid>
                 <Grid>
                     <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>

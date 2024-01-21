@@ -3,7 +3,7 @@ import ImageList from '@mui/material/ImageList';
 
 function ActorsList(props) {
     return (
-        <ImageList cols={5}>
+        <ImageList cols={props.cols}>
             {props.actors.map(actor => 
                 <Item
                     key={actor._id} 
@@ -12,7 +12,7 @@ function ActorsList(props) {
                     cardClassName="actorCard" 
                     textCardClass="actorTitle"
                     link={`/actors/${actor.tmdb_id}`}
-                    image={actor.profile_path ? `https://media.themoviedb.org/t/p/w138_and_h175_face/${actor.profile_path}` : null}
+                    image={ actor.profile_path ? `https://media.themoviedb.org/t/p/w138_and_h175_face/${actor.profile_path}` : null}
                 />
              )}
         </ImageList>

@@ -19,7 +19,7 @@ const pages = [
 ];
 
 function NavigationBar() {
-  const [anchorNav, setAnchorNav] = useState();
+  const [anchorNav, setAnchorNav] = useState(null);
 
   const handleOpenNavMenu = (e) => {
     setAnchorNav(e.currentTarget);
@@ -53,6 +53,7 @@ function NavigationBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
+              aria-label="menu-appbar"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -79,19 +80,10 @@ function NavigationBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.text} onClick={handleCloseNavMenu}>
-                  <Typography 
-                    textAlign="center"
-                    sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        fontFamily: 'Lexend Deca',
-                        fontWeight: 700,
-                        letterSpacing: '.1rem',
-                        color: 'inherit',
-                        textDecoration: 'none',
-                    }}
-                    ><NavLink to={page.to}>{page.text}</NavLink>
+                <MenuItem key={`${page.to}${page.text}`} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center"
+                  >
+                    <NavLink to={page.to}>{page.text}</NavLink>
                   </Typography>
                 </MenuItem>
               ))}
@@ -119,17 +111,9 @@ function NavigationBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page.text}
+              key={`${page.text}button`}
                 onClick={handleCloseNavMenu}
-                sx={{
-                    mr: 2,
-                    display: { xs: 'none', md: 'flex' },
-                    fontFamily: 'Lexend Deca',
-                    fontWeight: 700,
-                    letterSpacing: '.1rem',
-                    color: 'inherit',
-                    textDecoration: 'none',
-                  }}
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 <NavLink to={page.to}>{page.text}</NavLink>
               </Button>
