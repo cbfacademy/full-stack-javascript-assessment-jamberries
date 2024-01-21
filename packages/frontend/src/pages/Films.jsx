@@ -63,7 +63,7 @@ export default function Films() {
                         </Box>
                 </Grid>
                 <Grid >
-                    <FilmList films={films} cols={5}/>
+                    <FilmList films={films}/>
                 </Grid>
                 <Grid>
                         <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
