@@ -6,6 +6,7 @@ router.get('/', async (req, res) => {
   try {
      const query =  {actor_count : {$gt : 1}}
      const pageSize = 7;
+     const totalFilms = await Films.countDocuments({})
      const films = await Films.find(query)
      .limit(pageSize)
  
