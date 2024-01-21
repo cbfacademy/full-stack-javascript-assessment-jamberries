@@ -1,109 +1,90 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/V8cWq51n)
-# Full Stack JavaScript Assessment
+# Full Stack JavaScript Assessment 
+## The Black Movie Database
 
-- [Introduction](#introduction)
-  - [Learning Outcomes](#learning-outcomes)
-- [Requirements](#requirements)
-  - [What we expect you to accomplish](#what-we-expect-you-to-accomplish)
-- [Getting Started](#getting-started)
-- [Things to consider whilst building your application](#things-to-consider-whilst-building-your-application)
-  - [Design](#design)
-  - [Code Quality & Structure](#code-quality--structure)
-  - [Deployment](#deployment)
-  - [Feedback](#feedback)
-- [Deliverables / What You Should Submit](#deliverables--what-you-should-submit)
+A web application that contains a database of black actors and the films they star in. Node.js implementation using MongoDB via Mongoose.
 
-## Introduction
+The frontend is hosted at [Netlify](https://fantastic-valkyrie-3a694d.netlify.app/).
 
-For your assessment, you are to create a full-stack web application of your choosing. You could build:
+The backend is hosted at [Render](https://jamberries-test-api.onrender.com)
 
-1. Search Engine
-1. Chat Application
-1. Sentiment Analysis
-1. Product Recommendation Engine
+The dasebase is accessible through mongoDb. 
 
-or whatever you'd like.
+## Table of Contents
+- [Install](#install)
+- [Usage] (#usage)
+- [API] (#api)
+- [Licence](#license)
 
-This assessment offers you the choice to embrace either a monolithic (all in one) or a mono-repo (in separate pieces) architecture for your full-stack application. While the realm of microservices is gaining traction, understanding both monolithic and mono-repo setups provides a well-rounded perspective.
+## Install
 
-Opting for a monolithic architecture simplifies deployment, eases developmental complexities, and ensures a comprehensive view of the application stack. On the other hand, choosing the mono-repo route gives you a taste of modular organisation, scalable structures, and the ability to deploy parts independently while maintaining a centralised codebase. Whichever path you choose, this project ensures you garner deep insights and hands-on experience.
+### Prerequisites
+The following are required for this project:
 
-By default, this codebase has been set up as a mono-repo; to deploy as a monolith, you will need to make a few adjustments. [You can find out how to make the changes in this short guide](docs/deployment.md).
+- Git
+- Node.js (with NPM)
+- TMDB Api Key
 
-### Learning Outcomes
+### Installation
+git clone repo
+cd full-stack-application-jamberries
+```.backend npm install```
 
-By the end of this assessment, you will have demonstrated your ability to:
+```.frontend npm install```
 
-1. **Design and Architect Applications**: Understand the nuances of designing a user-centric application, from your user's journey to how they interact with your database.
-1. **Implement Best Practices**: Showcase your proficiency in following coding standards and structuring a project optimally.
-1. **Utilise Full-Stack Development**: Master using React for your frontend, Node.js for your backend logic, and MongoDB for your data needs.
-1. **Implement CI/CD**: Get hands-on with setting up and managing a CI/CD pipeline, leveraging tools like GitHub Actions.
-1. **Deploy Applications**: Understand the process to get your applications up and running on platforms suitable for full-stack apps.
-1. **Iterative Development & Feedback**: Appreciate the value of feedback loops in your software development journey and make iterations based on real user feedback.
+### Database Configuration
+- Create a MongoDb database. Instructions how to do so here{LINK]}
+- Take note of the password and the connection string, 
 
-By completing this assessment, you're set for a holistic dive into full-stack development using the JavaScript ecosystem and the intricacies of deploying and maintaining web applications.
+-connection string
 
-## Requirements
+## Running/ Development
 
-- **Frontend**: Utilise React for creating user interfaces
-- **Backend**: Build an API using Node.js and Express.js
-- **Database**: Utilise MongoDB for data storage
+- ```npm start frontend```
+  - This should open a browser to [http://localhost:3000](http://localhost3000)
+- ```npm start backend```
 
-### What we expect you to accomplish
+## App Configuration
 
-- A fully deployed application with the URL to it in this README
-- Comprehensive documentation
+### Backend Environment Variables
+- **MONGO_URI**
+  - ``mongodb+srv://admin:<PASSWORD>@cluster0.h5ci1pg.mongodb.net/<PROJECT>?retryWrites=true&w=majority``
+  
+  where ``PASSWORD`` is the database password and ```PROJECT``` is the name of the database.
 
-We have provided you with some ideas to help you achieve these, [which you can find here](#things-to-consider-whilst-building-your-application).
+- **PORT**
+  - The port which your express server is being hosted. Typically  PORT 8000.
 
-## Getting started
+- **TMDB_KEY** 
+  - The Movie Database api key unique to all users
+- **TMDB_TOKEN**
+  The Movie Database bearer token
+- **TMDB_MOVIE_URL** 
+  - The url to retrieve movie data
+  - https://api.themoviedb.org/3/movie/
+- **TMDB_ACTOR_CREDITS_URL** 
+  - The url to retrieve actor details
+    -https://api.themoviedb.org/3/person/
+- **TMDB_GENRE_URL** 
+  - The url to retrieve the film genres
+  - https://api.themoviedb.org/3/genre/movie/list
 
-We have created this codebase as a skeleton for you to use. You can adapt it to your needs.
 
-To get started with setting up this codebase on your machine [follow this guide we have created for you](docs/getting-started.md).
+### Frontend Environment Variables
+- **REACT_APP_API_URL** 
+  - The url which the server is running on. In development will typically be http://localhost:3000 however in production will be the url of where the backend server is hosted 
+- **REACT_APP_TMDB_KEY** 
+  - The Movie Database api key unique to all users
+- **REACT_APP_TMDB_TOKEN**
+  The Movie Database bearer token
+- **REACT_APP_TMDB_MOVIE_URL** 
+  - The url to retrieve movie data
+  - https://api.themoviedb.org/3/movie/
+- **REACT_APP_TMDB_ACTOR_URL** 
+  - The url to retrieve actor details
+    -https://api.themoviedb.org/3/person/
+- **REACT_APP_TMDB_SEARCH_URL** 
+  - The url to use TMDB api search function
+  - https://api.themoviedb.org/3/search/person
 
-## Things to consider whilst building your application
+## Deployment
 
-### Design
-
-- **User Flow**: Outline the user journey, considering main actions and navigation
-
-- **UI/UX**: Sketch a simple UI using tools like Figma or Adobe XD. Ensure a thoughtful user experience and consider tools like Google Lighthouse for insights on performance and accessibility
-
-For more tips refer to the [Design guide](docs/design-guide.md).
-
-### Code Quality & Structure
-
-- **Best Practices**: Adhere to coding best practices such as naming conventions, DRY principles, and more
-
-- **Design Patterns**: Consider popular patterns, like MVC, to structure your web application
-
-For more tips refer to the [Code Quality & Structure guide](docs/code-quality-standards.md).
-
-### Deployment
-
-- **Platform**: Deploy on a platform like [Heroku](https://www.heroku.com/), [Vercel](https://vercel.com/), [DigitalOcean App Platform](https://www.digitalocean.com/products/app-platform/), or [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
-
-- **Domain**: If you'd like, purchase a domain name from providers like [Namecheap](https://www.namecheap.com/) or [GoDaddy](https://www.godaddy.com/) and link it to your deployed application. If using AWS, you can manage domain names with [AWS Route 53](https://aws.amazon.com/route53/).
-
-For more tips refer to the [Deployment Guide](docs/deployment.md).
-
-### Feedback
-
-- **User Feedback**: Design a system to capture user feedback, whether it's through user interviews, surveys, or another medium
-
-- **Iterative Development**: Use feedback to make improvements to your application, refining it based on real user needs
-
-For more tips refer to the [Feedback Implementation Guide](docs/feedback-guide.md).
-
-## Deliverables / What You Should Submit
-
-1. The link to your GitHub repository
-
-1. A deployed version of your application
-
-1. Comprehensive documentation detailing your thought process, design choices, and more
-
----
-
-Good luck with your assessment! You've got this 💪
