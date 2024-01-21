@@ -118,10 +118,3 @@ user verification?
 Read me very detailed - prod, pagination etc
 
 accesibility
-
-filters - at least two black actors
-all films
-
-films - characters and actors
-
-DOC BLOCKS
