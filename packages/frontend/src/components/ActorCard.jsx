@@ -2,8 +2,7 @@ import {
     Card,
     CardContent,
     Avatar, 
-    Typography,
-    Button
+    Typography
 } from '@mui/material';
 
 import Box from '@mui/material/Box';

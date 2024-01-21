@@ -81,6 +81,18 @@
   opacity: .35;
   z-index: -99999;
 }
+/* 
+#homeBox {
+   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(5px) grayscale(100%);
+  opacity: .9;
+  z-index: -99999;
+  background: url('/public/img/mollie-sivaram-yubCnXAA3H8-unsplash(1).jpg'); 
+} */
 
 .font-weight-bold {
   font-weight: bold;
