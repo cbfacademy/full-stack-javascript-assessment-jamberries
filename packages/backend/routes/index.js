@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router()
+const router = express.Router();
 const Films = require('../models/FilmsModel.js');
 
 router.get('/', async (req, res) => {
@@ -15,6 +15,5 @@ router.get('/', async (req, res) => {
      res.status(500).send("Server Error")
   }
 })
-
 
 module.exports = router

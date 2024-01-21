@@ -1,7 +1,9 @@
+
+import { ImageList } from '@mui/material';
 import Item from './ListItem';
-import ImageList from '@mui/material/ImageList';
 
 function FilmList(props) {
+   
     return (
     <ImageList cols={props.cols}>
         {props.films.map(film => 
@@ -17,7 +19,6 @@ function FilmList(props) {
         )}
     </ImageList>
     )
-    
 }
 
 export default FilmList;

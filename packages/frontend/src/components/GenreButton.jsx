@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-// import { Link } from "react-router-dom";
 
 function GenreButton(props) {
 
@@ -9,11 +8,10 @@ function GenreButton(props) {
         props.setGenreQuery(query + e.target.value)
     }
     const properties = {
-        // component: Link,
-        // to: '/films'
+    
         onClick : handleGenreClick
     };
-
+   
     return (
         props.genres.map((genre,index) => 
             <>

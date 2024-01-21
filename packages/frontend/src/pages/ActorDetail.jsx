@@ -31,20 +31,6 @@ export default function ActorDetail() {
 
     if (actor) {
 
-    //    
-    //                         <h1 className="mt-5"> {actor.name}</h1>
-    //                         <br/>
-    //                         <p>{actor.tagline}</p>
-    //                         <p className="">{actor.biography}</p>
-    //                         <p>{actor.birthday}</p>
-    //                         <p>{actor.place_of_birth}</p>
-    //                         <p>{actor.also_known_as}</p>
-    //                     </Col>
-    //             </Row>
-    //         </Container>
-    //     )
-    //     };
-    // };
     return (
         <Container>
             <Box sx={{ flexGrow: 1 }}>

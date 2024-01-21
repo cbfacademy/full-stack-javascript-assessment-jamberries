@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import IconButton from '@mui/material/IconButton';
 
+
 const pages = [
     {text: 'Home', to: '/'}, 
     {text: 'Films',  to: '/films'}, 
@@ -37,7 +38,6 @@ function NavigationBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -82,6 +82,7 @@ function NavigationBar() {
               {pages.map((page) => (
                 <MenuItem key={`${page.to}${page.text}`} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center"
+                  
                   >
                     <NavLink to={page.to}>{page.text}</NavLink>
                   </Typography>
@@ -94,7 +95,6 @@ function NavigationBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
