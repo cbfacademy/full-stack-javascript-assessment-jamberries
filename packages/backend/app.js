@@ -5,6 +5,7 @@ const path = require('path');
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+const routes = require("./routes")
 const uri = process.env.MONGO_URI; 
 
 const app = express();
