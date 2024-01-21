@@ -46,11 +46,12 @@ export default function AutocompleteInput(props) {
     }, [inputValue, setOptions]);
 
     const handleChange = (event, value) => {
-      if(value.hasOwnProperty('id')) {
+      // if(value[0] !== undefined && value[0].hasOwnProperty('id')) {
         props.setSelected(value)
-      } else {
-        setAlert(true)
-      }
+      // } else {
+      //   console.log(value)
+      //   setAlert(true)
+      // }
    }
 
   return (

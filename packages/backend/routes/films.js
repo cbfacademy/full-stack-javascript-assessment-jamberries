@@ -47,6 +47,7 @@ router.get('/api/genres', async (req, res) => {
 
 /**
  * Route serving list of films, querying the genre to client
+ * where at least 3 of the actors are in the database
  * @name get/api/films
  * @function
  * @param {string} path - Express path
@@ -55,10 +56,10 @@ router.get('/api/genres', async (req, res) => {
 router.get('/api/films', async (req, res) => {
    try {
       const page = parseInt(req.query.page || "0")
-    //  const query = !req.query.genre ? {actor_count : {$gt : 1}} : {actor_count : {$gt : 1}, genres : parseInt(req.query.genre)}
-      const query = !req.query.genre ? {} :{ genres : parseInt(req.query.genre)}
+     const query = !req.query.genre ? {actor_count : {$gt : 1}} : {actor_count : {$gt : 1}, genres : parseInt(req.query.genre)}
+      // const query = !req.query.genre ? {} :{ genres : parseInt(req.query.genre)}
       const pageSize = 18;
-      const totalFilms = await Films.countDocuments({})
+      const totalFilms = await Films.countDocuments(query)
       const films = await Films.find(query)
       .sort({title: 'asc'})
       .limit(pageSize)
@@ -88,7 +89,29 @@ router.post('/api/films', async (req, res) => {
       const actorIdArray= array.map(item => {
          return `${process.env.TMDB_ACTOR_CREDITS_URL}${item}/movie_credits?api_key=${process.env.TMDB_KEY}`
      })
-     lib.populateFilmsCollection(actorIdArray)
+     const result = lib.populateFilmsCollection(actorIdArray)
+     res.send(result)
+   } catch (error) {
+      console.error(error)
+      res.status(500).send("Server Error")
+   }
+})
+
+/**
+ * Route serving a delete film of an actor
+ * @name delete/api/film:id
+ * @function
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
+router.delete('/api/film/:id', async (req, res) => {
+   try {
+      const id = req.params.id
+      const actorId = 
+         `${process.env.TMDB_ACTOR_CREDITS_URL}${id}/movie_credits?api_key=${process.env.TMDB_KEY}`
+     
+   const result = lib.removeFilmsFromCollection(actorId)
+   res.send(result)
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")

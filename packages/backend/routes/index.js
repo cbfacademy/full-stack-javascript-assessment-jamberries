@@ -16,7 +16,7 @@ const Films = require('../models/FilmsModel.js');
  */
 router.get('/', async (req, res) => {
   try {
-     const query =  {actor_count : {$gt : 1}}
+     const query =  {"actor_count" : {$gt : 2}, "backdrop_path":{"$gte":""}}
      const pageSize = 7;
      const films = await Films.find(query)
      .limit(pageSize)

@@ -49,12 +49,37 @@ router.post('/api/actors', async (req, res) => {
        );
       const actors = await Actors.insertMany(array)
       .then(function () {
-         res.send({data:'Success'})
+         res.send({data:'success'})
          console.log("Data inserted") 
      }).catch(function (error) {
          console.log(error)     
-         res.send({data:'Success'})
+         res.send({data:'error'})
      });
+   } catch (error) {
+      console.error(error)
+      res.status(500).send("Server Error")
+   }
+})
+
+/**
+ * Route serving a delete action of an actor
+ * @name delete/api/actors:id
+ * @function
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
+router.delete('/api/actor/:id', async (req, res) => {
+   try {
+      const tmdb_id = parseInt(req.params.id)
+      const actor = await Actors.deleteOne({tmdb_id : tmdb_id})
+      .then(function () {
+         res.send({data:'success'})
+         console.log("Data deleted") 
+      }).catch(function (error) {
+         console.log(error)     
+         res.send({data:'success'})
+     });
+      res.json(actor);
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")

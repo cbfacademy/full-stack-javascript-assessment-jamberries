@@ -22,6 +22,7 @@
 }
 #navBar a {
   text-decoration: none;
+  color: #ff5501;
 }
 
 #navBar a.active {

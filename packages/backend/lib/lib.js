@@ -26,14 +26,14 @@ const populateFilmsCollection = (actorIdArray) => {
     actorIdArray.map(async actorIdArray => {
       try {
         const response = await fetch(actorIdArray);
+        console.log(actorIdArray)
         const filmJson = await response.json();
         filmData = filmJson.cast;
-  
         for (let i = 0; i < filmData.length; i++) {     
          //Ignore documentaries with archive footage
           if(filmData[i].character !== "Self (archive footage)") {
   
-            let query = FilmsModel.where({tmdb_id: filmData[i].id})
+            let query = FilmsModel.where({"tmdb_id": filmData[i].id})
             let filmExits = await query.findOne()
   
             if(filmExits == null) {
@@ -52,22 +52,17 @@ const populateFilmsCollection = (actorIdArray) => {
               .then(()=> console.log(`Saved Item ${filmData[i].title}`))
               .catch(error => console.log(error))
             } else {
-              let query = { tmdb_id : filmData[i].id}
+              let query = { "tmdb_id" : filmData[i].id}
               
-              FilmsModel.findOneAndUpdate(query, {$inc : {actor_count: 1}}, {new: true})
+              FilmsModel.findOneAndUpdate(query, {$inc : {"actor_count": 1}}, {new: true})
               .then(()=> console.log(`Updated Item ${filmData[i].title}`))
               .catch(error => console.log(error))
             }
   
             filmCounter++;
-          
-            if (filmCounter === filmData.length) {         
-                   res.send({dbmessage:'success'})  
-            } else {
-                res.send({dbmessage : 'error'})
-            }
           }
         }
+        return {dbmessage:'success'}
       }
       catch (error) {
         console.log(error);
@@ -101,6 +96,21 @@ async function populateGenreCollection(genreUrl) {
     }
 }
 
+const removeFilmsFromCollection = async(actorId) => {
+  try { 
+    const res = await fetch(actorId);
+    const creditJson = await res.json();
+    creditData = creditJson.cast.map(item => item.id);
+    const deleted = await FilmsModel.deleteMany({ "actor_count": 1, "tmdb_id": {$in: creditData}})
+    console.log(deleted.deletedCount)
+    return deleted;
+  }
+  catch (error) {
+    console.log(error);
+  }
+
+}
+
 /**
  * Function used to seed data into the database
  * @param {String} db MongoDB URI 
@@ -116,5 +126,6 @@ async function seedFunction(db,actorIdArray) {
 }
 
 module.exports = {
-    populateFilmsCollection: populateFilmsCollection
+    populateFilmsCollection: populateFilmsCollection,
+    removeFilmsFromCollection: removeFilmsFromCollection
 }
