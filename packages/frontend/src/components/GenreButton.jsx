@@ -21,7 +21,7 @@ function GenreButton(props) {
             className="genreButton" 
             variant="outlined" 
             color="info"
-            key={`${genre._id}${index}`}
+            key={genre.id+index}
             {...(props.source === 'films'? properties : {})}
             value={genre.tmdb_id}>{genre.name}
             </Button>{' '}

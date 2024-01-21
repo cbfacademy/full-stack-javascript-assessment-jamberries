@@ -56,7 +56,6 @@ router.post('/api/films', async (req, res) => {
          return `${process.env.TMDB_ACTOR_CREDITS_URL}${item}/movie_credits?api_key=${process.env.TMDB_KEY}`
      })
      lib.databaseFunction(actorIdArray)
-     res.send('success')
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")

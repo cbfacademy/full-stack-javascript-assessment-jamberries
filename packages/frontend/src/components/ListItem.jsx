@@ -8,7 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 const Item = (props) => {
    const image = props.image !== null ? props.image : "/img/imageNotFound.png"
   return (
-        <ImageListItem key={`${props.title}${props.title}`}>
+        <ImageListItem key={props.image}>
           <img
             srcSet={`${image}?w=248&fit=crop&auto=format&dpr=2 2x`}
             src={`${image}?w=248&fit=crop&auto=format`}
@@ -16,7 +16,6 @@ const Item = (props) => {
             loading="lazy"
           />
           <ImageListItemBar
-            key={`${props.title}itemBar`}
             title={props.title}
             actionIcon={
               <IconButton
