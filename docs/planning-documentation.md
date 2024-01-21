@@ -2,14 +2,16 @@
 
 ### Ideas
 
+A few ideas on what to do for my project:
+
  - **Recommendation app**: Users can submit what anime they have watched and are recommended new similar anime. Can also leave comments on anime. 
  - **Search Engine**: Users can search through various anime and can save the anime they have watched. 
-  - **Search Engine**: Users can search through various films, and can catorgorise certain films as starring POC. Similar to Bechdel Test Movie List 
+  - **Search Engine**: Users can search through various films, and can catagorise certain films as starring Black Actors. Similar to [Bechdel Test Movie List](https://bechdeltest.com)
  - **Gallery/inventory app**: Users upload image? title? of sewing patterns and/or fabric they own. Issue with patterns would be getting the image of the pattern w/o uploading pattern entirely. 
  - **Gallery/Review app**: Users upload images of finished sewing projects, and images of the fabric they used, fabric type. Can post reviews of the pattern/ fabric.  They type the pattern name but can link it too. 
 
  ### Selected Idea
- Moving forward with the film search engine. The database will contain a list of actors and their race (if they are Black). The app will then check whether actors present in the movie and 
+ Moving forward with the film search engine. The database will contain a list of Black actors and films they star in.
 
  Version 1 of the app will use a basic database of items. Version 2 of the app will have items filtered from a list of actors cross checked with the api list. (using their movie credits)
 
@@ -41,9 +43,15 @@ Steps I need to take
 ### Wireframes
 Pages
 - **Homepage**
+![Homepage](/docs/images/wireframeHome.png)
 - **Selected Movie page**
+![detail](/docs/images/wireframeDetail.png)
+- **Selected genre/ search  page**
+![search](/docs/images/wireframeSearch.png)
+- **Add Actor Page** 
+![actor](/docs/images/wireframeActorAdd.png)
 - **A-Z List of movies page**
-- **Selected genre page**
+
 
 ### Database
 **Actor collection** 
@@ -74,37 +82,13 @@ list of movies with the actor id
 Get several actor ids, create query that searches for all movies where that actor id is present
 For each actor in the list, get the movie details
 
-Two ways of creating a collection :
-
-**Embedded cast array**
-- Pros: 
-    - single query to retrieve data
-    - single operation to update/delete data
-- Cons:
-    - can become unbounded
-    - data duplication
-
-**Referenced cast array**
-- Pros:
-    - no duplication
-    - smaller documents
-- Cons: 
-    - multiple collections needed 
-    - need to join from multiple documents
-
-
+### Image paths from TMDB
 Poster path
 - https://media.themoviedb.org/t/p/w300_and_h450_bestv2/${poster path}
-
-- example 
-- /skbFWkAROLO7nmP8meSLru5sCSO.jpg
 
 Backdrop path 
 - https://media.themoviedb.org/t/p/w533_and_h300_bestv2/${backdrop_path}
  - https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/
-- /k9hhSHg5GS4UgWQC6MHBOZrarji.jpg
-- example 
-- /j69IYCAmeFlF6dcoZZAWRUmI8On.jpg
 
 To do Wednesday:
 Create array of URLS

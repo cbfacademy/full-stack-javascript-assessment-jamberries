@@ -1,7 +1,7 @@
 # Full Stack JavaScript Assessment 
 ## The Black Movie Database
 
-A web application that contains a database of black actors and the films they star in. Node.js implementation using MongoDB via Mongoose.
+A web application that contains a database of black actors and the films they star in. Node.js implementation using MongoDB via Mongoose. You can browse through the actors, browse through films and filter by genre. You are also able to add actors to the database. By adding actor, a query is run to add all films they have acting credits on into the database. 
 
 The frontend is hosted at [Netlify](https://fantastic-valkyrie-3a694d.netlify.app/).
 
@@ -46,6 +46,7 @@ cd full-stack-application-jamberries
 ## App Configuration
 
 ### Backend Environment Variables
+Add the to your .env file in your backend package and put ```require("dotenv").config()```. Retrieve the variables using ```process.env.ENVIRONMENTVARIABLE```, where ENVIRONMENTVARIABLE is your variable. Node will set the variables on ```npm start backend```
 - **MONGO_URI**
   - ``mongodb+srv://admin:<PASSWORD>@cluster0.h5ci1pg.mongodb.net/<PROJECT>?retryWrites=true&w=majority``
   
@@ -70,6 +71,8 @@ cd full-stack-application-jamberries
 
 
 ### Frontend Environment Variables
+Add the to your .env file in your frontend package. Retrieve the variables using ```process.env.REACT_APP_ENVIRONMENTVARIABLE```, where ENVIRONMENTVARIABLE is your variable. Ensure that the variable starts with REACT_APP. React will set the variables on ```npm start frontend```
+
 - **REACT_APP_API_URL** 
   - The url which the server is running on. In development will typically be http://localhost:3000 however in production will be the url of where the backend server is hosted 
 - **REACT_APP_TMDB_KEY** 
@@ -87,4 +90,31 @@ cd full-stack-application-jamberries
   - https://api.themoviedb.org/3/search/person
 
 ## Deployment
+The database is hosted on [MongoDB](https://www.mongodb.com/). This was chosen as it has flexibiilty with document fields. I decided to host the backend server and the frontend app separately 1. in order to use the backend server url as an environment variable and 2. it was my first time deploying an application and wanted to take it step by step. 
 
+### Backend
+I used [Render](https://dashboard.render.com/) to host the backend as they have a free service. It also auto-deploys for every push to my repository or change to my app. 
+
+- The root directory is set as ```packages/backend```
+- The build command is ```npm install```
+- The start command is ```npm start```
+- I also set my environment variables for the app to use
+
+### Frontend
+I used [Netlify](https://app.netlify.com/teams/jamberries) for the frontend, which also has a free service. It also auto-deploys for every push to my repository or change to my app. 
+
+- The base directory is set as ```packages/frontend```
+- The build command is ```CI= nppm run buil```
+- The publigh directory is ```packages/frontend/build```
+- I also set my environment variables for the app to use and set the deployed Render url for my server.
+
+Netlify required an additional environmental variable ```CI = FALSE``` as it treats warnings as errors, which was breaking my app on first few deploments. Netlify also required a file to be added to the root of the frontend folder ```netlify.toml```.
+The contents of the file should be as such:
+
+`[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200`
+
+## Authors
+- **Jasmine Beresford** - Creator
