@@ -1,14 +1,18 @@
 import Button from '@mui/material/Button';
 
+/**
+ * Component to display the genres as buttons
+ * @component
+ * @param {object} props The object of genres
+ * @returns {ReactComponentElement} Button div that contains genre buttons
+ */
 function GenreButton(props) {
 
     const query = '&&genre='
-
     const handleGenreClick = (e) => {
         props.setGenreQuery(query + e.target.value)
     }
     const properties = {
-    
         onClick : handleGenreClick
     };
    

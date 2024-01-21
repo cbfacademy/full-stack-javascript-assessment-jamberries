@@ -8,6 +8,10 @@ import HomeCarousel from "../components/Carousel";
 
 const api_url = process.env.REACT_APP_API_URL;
 
+/**
+ * Displays the homepage
+ * @returns {ReactComponentElement} Home page
+ */
 export default function Home() {
     
     const [films, setFilms] = useState([]);

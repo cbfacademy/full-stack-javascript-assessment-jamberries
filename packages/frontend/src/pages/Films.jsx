@@ -8,6 +8,10 @@ import GenreButton from "../components/GenreButton";
 
 const api_url = process.env.REACT_APP_API_URL
 
+/**
+ * Displays the films in the database, which can be filtered by genre
+ * @returns {ReactComponentElement} Film List page
+ */
 export default function Films() {
     const [films, setFilms] = useState([]);
     const [pages, setPages] = useState(0);

@@ -9,6 +9,10 @@ import GenreButton from '../components/GenreButton';
 const tmdb_url = process.env.REACT_APP_TMDB_MOVIE_URL
 const tmdb_api = `?api_key=${process.env.REACT_APP_TMDB_KEY}`
 
+/**
+ * Displays the film detail page
+ * @returns {ReactComponentElement} Film detail page
+ */
 export default function FilmDetail() {
     const { id } = useParams();
     const [film, setFilm] = useState(null);

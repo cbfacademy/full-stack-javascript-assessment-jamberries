@@ -5,6 +5,12 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
+/**
+ * Component to display film or actor details.
+ * @component
+ * @param {object} props The film/actor details
+ * @returns {ReactComponentElement} Image component
+ */
 const Item = (props) => {
    const image = props.image !== null ? props.image : "/img/imageNotFound.png"
   return (

@@ -5,6 +5,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+/**
+ * Component to confirm adding of actors and films to database
+ * @component
+ * @param {object} props The actor details
+ * @returns {ReactComponentElement} Dialog box
+ */
 export default function PositionedPopper(props) {
 
   return (

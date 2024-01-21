@@ -1,6 +1,12 @@
 import Item from './ListItem';
 import ImageList from '@mui/material/ImageList';
 
+/**
+ * Component for display Actor details
+ * @component
+ * @param {object} props The Actors list object
+ * @returns {ReactComponentElement} an item with the actors image and name
+ */
 function ActorsList(props) {
     return (
         <ImageList cols={props.cols}>

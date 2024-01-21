@@ -1,10 +1,21 @@
+/**
+ * Express router providing film related routes
+ * @module routes/films
+ */
+
 const express = require("express");
 const router = express.Router();
 const Genre = require("../models/GenreModel");
 const Films = require('../models/FilmsModel.js');
 const lib = require('../lib/lib')
 
-
+/**
+ * Route serving film to client
+ * @name get/api/films/:id
+ * @function
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 router.get('/api/films/:id', async (req, res) => {
    try {
       const tmdb_id = parseInt(req.params.id)
@@ -16,6 +27,13 @@ router.get('/api/films/:id', async (req, res) => {
    }
 })
 
+/**
+ * Route serving list of genres to client
+ * @name get/api/genres
+ * @function
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 router.get('/api/genres', async (req, res) => {
    try {
       const genres = await Genre.find({})
@@ -27,6 +45,13 @@ router.get('/api/genres', async (req, res) => {
    }
 })
 
+/**
+ * Route serving list of films, querying the genre to client
+ * @name get/api/films
+ * @function
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 router.get('/api/films', async (req, res) => {
    try {
       const page = parseInt(req.query.page || "0")
@@ -49,13 +74,21 @@ router.get('/api/films', async (req, res) => {
    }
 })
 
+/**
+ * Route serving array of actor ids for lib function to add their movie
+ * credits to database
+ * @name post/api/films
+ * @function
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
 router.post('/api/films', async (req, res) => {
    try {
       const array = req.body.map( item => item.id)
       const actorIdArray= array.map(item => {
          return `${process.env.TMDB_ACTOR_CREDITS_URL}${item}/movie_credits?api_key=${process.env.TMDB_KEY}`
      })
-     lib.databaseFunction(actorIdArray)
+     lib.populateFilmsCollection(actorIdArray)
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")

@@ -1,3 +1,9 @@
+/**
+ * Component for display Actor details
+ * @component
+ * @param {object} props The Actor detail object
+ * @returns {ReactComponentElement} a card with the actors details
+ */
 import {
     Card,
     CardContent,

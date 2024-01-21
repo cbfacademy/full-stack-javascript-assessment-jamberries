@@ -13,6 +13,12 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 const tmdb_url = process.env.REACT_APP_TMDB_SEARCH_URL
 const tmdb_api = `&api_key=${process.env.REACT_APP_TMDB_KEY}`
 
+/**
+ * Component for autocomplete actor names for input
+ * @component
+ * @param {object} props The Actors api call from TMDB
+ * @returns {ReactComponentElement} autocomplete input component
+ */
 export default function AutocompleteInput(props) {
 
   const [options, setOptions] = useState([]);

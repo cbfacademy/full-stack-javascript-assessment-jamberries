@@ -1,5 +1,11 @@
 import Carousel from 'react-bootstrap/Carousel';
 
+/**
+ * Component for the image carousel on the home page. Displays images from database
+ * @component
+ * @param {object} props The film details
+ * @returns {ReactComponentElement} Carousel component
+ */
 export default function HomeCarousel(props) {
   return (
     <Carousel data-bs-theme="dark">
