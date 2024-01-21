@@ -7,13 +7,7 @@ The frontend is hosted at [Netlify](https://fantastic-valkyrie-3a694d.netlify.ap
 
 The backend is hosted at [Render](https://jamberries-test-api.onrender.com)
 
-The dasebase is accessible through mongoDb. 
-
-## Table of Contents
-- [Install](#install)
-- [Usage] (#usage)
-- [API] (#api)
-- [Licence](#license)
+The database is accessible through mongoDb. 
 
 ## Install
 
@@ -34,8 +28,6 @@ cd full-stack-application-jamberries
 ### Database Configuration
 - Create a MongoDb database. Instructions how to do so here{LINK]}
 - Take note of the password and the connection string, 
-
--connection string
 
 ## Running/ Development
 
