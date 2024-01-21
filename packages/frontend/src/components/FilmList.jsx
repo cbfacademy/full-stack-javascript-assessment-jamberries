@@ -3,7 +3,7 @@ import ImageList from '@mui/material/ImageList';
 
 function FilmList(props) {
     return (
-    <ImageList cols={5}>
+    <ImageList cols={props.cols}>
         {props.films.map(film => 
             <Item
                 key={film._id} 
