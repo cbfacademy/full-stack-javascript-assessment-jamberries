@@ -4,22 +4,6 @@ const Genre = require("../models/GenreModel");
 const Films = require('../models/FilmsModel.js');
 const lib = require('../lib/lib')
 
-router.get('/api/films/home-page', async (req, res) => {
-   try {
-      const query =  {actor_count : {$gt : 1}}
-      // const query = !req.query.genre ? {} :{ genres : parseInt(req.query.genre)}
-      const pageSize = 7;
-      const totalFilms = await Films.countDocuments({})
-      const films = await Films.find(query)
-      .limit(pageSize)
-  
-      res.json(films);
-
-   } catch (error) {
-      console.error(error)
-      res.status(500).send("Server Error")
-   }
-})
 
 router.get('/api/films/:id', async (req, res) => {
    try {
