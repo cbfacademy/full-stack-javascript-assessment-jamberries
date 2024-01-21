@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo} from "react";
+import { useState, useEffect} from "react";
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,41 +15,24 @@ export default function Films() {
     const [genres, setGenres] = useState([]);
     const [genreQuery, setGenreQuery] = useState('');
 
-  const fetchFilmList = useMemo(() => async () => {
-    try {
-        fetch(`${api_url}/api/films?page=${pageNumber}${genreQuery}`)
-        .then(res => res.json({}))
-        .then(({films, pages}) => {
-          setFilms(films)
-          setPages(pages)
-      })
-      .catch(error => console.error(error))
-    } catch (error) {
-      console.error('Error fetching product list:', error);
-    }
-   }, [pageNumber, genreQuery]);;
+        useEffect(() => {
+            const fetchFilms = async () => {
+                const res = await fetch(`${api_url}/api/films?page=${pageNumber}${genreQuery}`);
+                const data = await res.json()
+                setFilms(data.films)
+                setPages(data.pages);
+            };
+            fetchFilms();
+        }, [pageNumber, genreQuery]);
 
-    useEffect(() => {
-        fetchFilmList();
-    }, [fetchFilmList]);
-
-
-    const fetchGenreList = useMemo(() => async () => {
-        try {
-            fetch(`${api_url}/api/genres`)
-            .then(res => res.json({}))
-            .then((genres) => {
-            setGenres(genres)
-        })
-        .catch(error => console.error(error))
-        } catch (error) {
-        console.error('Error fetching product list:', error);
-        }
-    }, []);;
-
-    useEffect(() => {
-        fetchGenreList();
-    }, [fetchGenreList]);
+      useEffect(() => {
+        const fetchGenres = async () => {
+            const res = await fetch(`${api_url}/api/genres`);
+            const data = await res.json()
+            setGenres(data)
+        };
+        fetchGenres();
+    }, []);
 
     return (
         <Container>

@@ -1,33 +1,36 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import TheatersIcon from '@mui/icons-material/Theaters';
 import AppBar from '@mui/material/AppBar';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import TheatersIcon from '@mui/icons-material/Theaters';
-import IconButton from '@mui/material/IconButton';
 
-const pages = [
+const pagesx = [
     {text: 'Home', to: '/'}, 
     {text: 'Films',  to: '/films'}, 
     {text: 'Actors',  to: '/actors'}
 ];
 
 function NavigationBar() {
-  const [anchorNav, setAnchorNav] = useState();
 
-  const handleOpenNavMenu = (e) => {
-    setAnchorNav(e.currentTarget);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
   };
+ 
 
   const handleCloseNavMenu = () => {
-    setAnchorNav(null);
+    setAnchorElNav(null);
   };
+
 
   return (
     <AppBar position="static" id="navBar">
@@ -48,11 +51,13 @@ function NavigationBar() {
               textDecoration: 'none',
             }}
           >
-             The Database
+            The Database
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
+              aria-label="menu-appbar"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -62,7 +67,7 @@ function NavigationBar() {
             </IconButton>
             <Menu
               id="menu-appbar"
-              anchorEl={anchorNav}
+              anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'left',
@@ -72,26 +77,17 @@ function NavigationBar() {
                 vertical: 'top',
                 horizontal: 'left',
               }}
-              open={Boolean(anchorNav)}
+              open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page.text} onClick={handleCloseNavMenu}>
-                  <Typography 
-                    textAlign="center"
-                    sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        fontFamily: 'Lexend Deca',
-                        fontWeight: 700,
-                        letterSpacing: '.1rem',
-                        color: 'inherit',
-                        textDecoration: 'none',
-                    }}
-                    ><NavLink to={page.to}>{page.text}</NavLink>
+              {pagesx.map((page) => (
+                <MenuItem key={`${page.to}${page.text}`} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center"
+                  >
+                    <NavLink to={page.to}>{page.text}</NavLink>
                   </Typography>
                 </MenuItem>
               ))}
@@ -102,14 +98,13 @@ function NavigationBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'Lexend Deca',
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.1rem',
+              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -117,19 +112,11 @@ function NavigationBar() {
             The Database
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pagesx.map((page) => (
               <Button
-                key={page.text}
+                key={`${page.text}button`}
                 onClick={handleCloseNavMenu}
-                sx={{
-                    mr: 2,
-                    display: { xs: 'none', md: 'flex' },
-                    fontFamily: 'Lexend Deca',
-                    fontWeight: 700,
-                    letterSpacing: '.1rem',
-                    color: 'inherit',
-                    textDecoration: 'none',
-                  }}
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 <NavLink to={page.to}>{page.text}</NavLink>
               </Button>
