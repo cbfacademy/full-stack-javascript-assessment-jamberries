@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
      const pageSize = 7;
      const films = await Films.find(query)
      .limit(pageSize)
-     res.send(films);
+     res.json(films);
 
   } catch (error) {
      console.error(error)

@@ -45,7 +45,7 @@ app.use('/api/films', require('./routes/films'))
 app.use('/api/genres', require('./routes/films'))
 app.use('/api/actors', require ('./routes/actors'))
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });

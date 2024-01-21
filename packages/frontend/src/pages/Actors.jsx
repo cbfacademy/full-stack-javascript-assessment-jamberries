@@ -18,11 +18,12 @@ export default function Actors() {
             const fetchActors = async () => {
                 const res = await fetch(`/${api_url}/api/actors?page=${pageNumber}`);
                 const data = await res.json();
+                console.log(data)
                 setActors(data.actors)
                 setPages(data.pages)
             };
             fetchActors();
-        },[pageNumber])
+        },[])
 
     return (
         <Container>
@@ -34,10 +35,10 @@ export default function Actors() {
                     <Button className="buttonLink" variant="link" as={Link} to="/actor-new"> + Add an actor</Button>{' '}
                 </Grid>
                 <Grid >
-                    <ActorsList actors={actors}/>
+                    {/* <ActorsList actors={actors}/> */}
                 </Grid>
                 <Grid>
-                    <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/>
+                    {/* <PaginationBar pages={pages} pageNumber={pageNumber} setPageNumber={setPageNumber}/> */}
                 </Grid>
             </Box>
         </Container>

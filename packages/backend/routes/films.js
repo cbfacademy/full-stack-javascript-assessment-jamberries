@@ -10,7 +10,7 @@ router.get('/api/films/:id', async (req, res) => {
       const tmdb_id = parseInt(req.params.id)
       const film = await Films.findOne({tmdb_id : tmdb_id}).exec();
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.send(film);
+      res.json(film);
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")
@@ -22,7 +22,7 @@ router.get('/api/genres', async (req, res) => {
       const genres = await Genre.find({})
       .sort({name: 'asc'})
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.send(genres);
+      res.json(genres);
    } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")
@@ -41,7 +41,7 @@ router.get('/api/films', async (req, res) => {
       .limit(pageSize)
       .skip(pageSize * page);
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.send({
+      res.json({
          films, 
          pages: Math.ceil(totalFilms / pageSize)});
 

@@ -15,24 +15,24 @@ export default function Films() {
     const [genres, setGenres] = useState([]);
     const [genreQuery, setGenreQuery] = useState('');
 
-        useEffect(() => {
-            const fetchFilms = async () => {
-                const res = await fetch(`/${api_url}/api/films?page=${pageNumber}${genreQuery}`);
-                const data = await res.json()
-                setFilms(data.films)
-                setPages(data.pages);
-            };
-            fetchFilms();
-        }, [pageNumber, genreQuery]);
+    useEffect(() => {
+        fetch(`/${api_url}/api/films?page=${pageNumber}${genreQuery}`)
+        .then(res => res.json())
+        .then(({films, pages}) => {
+          setFilms(films)
+          setPages(pages)
+      })
+      .catch(error => console.error(error))
+      }, [pageNumber, genreQuery]);
 
-      useEffect(() => {
-        const fetchGenres = async () => {
-            const res = await fetch(`/${api_url}/api/genres`);
-            const data = await res.json()
-            setGenres(data)
-        };
-        fetchGenres();
-    }, []);
+    useEffect(() => {
+        fetch(`/${api_url}/api/genres`)
+        .then(res => res.json())
+        .then((genres) => {
+          setGenres(genres)
+      })
+      .catch(error => console.error(error));
+      }, []);
 
     return (
         <Container>

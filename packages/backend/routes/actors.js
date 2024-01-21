@@ -12,7 +12,7 @@ router.get('/api/actors', async (req, res) => {
       .limit(pageSize)
       .skip(pageSize * page);
       res.setHeader("Access-Control-Allow-Origin", "*");
-      res.send({
+      res.json({
         actors, 
         pages: Math.ceil(totalActors / pageSize)});
    } catch (error) {
