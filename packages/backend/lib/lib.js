@@ -62,8 +62,7 @@ const populateFilmsCollection = (actorIdArray) => {
             filmCounter++;
           
             if (filmCounter === filmData.length) {         
-                   res.send({dbmessage:'success'})
-              break;  
+                   res.send({dbmessage:'success'})  
             } else {
                 res.send({dbmessage : 'error'})
             }
