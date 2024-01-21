@@ -1,28 +1,18 @@
-import Button from '@mui/material/Button';
-// import { Link } from "react-router-dom";
+import React  from "react";
+import Button from "react-bootstrap/Button";
 
 function GenreButton(props) {
 
     const query = '&&genre='
-
-    const handleGenreClick = (e) => {
-        props.setGenreQuery(query + e.target.value)
-    }
-    const properties = {
-        // component: Link,
-        // to: '/films'
-        onClick : handleGenreClick
-    };
-
+   
     return (
         props.genres.map((genre,index) => 
             <>
         <Button 
-            className="genreButton" 
-            variant="outlined" 
-            color="info"
+            className="genreButton my-2" 
+            variant="outline-dark" 
             key={genre.id+index}
-            {...(props.source === 'films'? properties : {})}
+            onClick={(e) => props.setGenreQuery(query + e.target.value)}
             value={genre.tmdb_id}>{genre.name}
             </Button>{' '}
         </>)

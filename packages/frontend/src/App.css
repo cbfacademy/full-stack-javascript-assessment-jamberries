@@ -22,7 +22,6 @@
 }
 #navBar a {
   text-decoration: none;
-  color: #ff5501;
 }
 
 #navBar a.active {
@@ -48,11 +47,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.actorCard > a , .filmCard > a{
-  color:#ff5501;
-  text-decoration: none;
 }
 
 .pagBar > .active > .page-link{
@@ -96,7 +90,3 @@
   border-radius: 25px !important;
 }
 
-.buttonLink {
-  text-decoration: none !important;
-  color:#ff5501 !important;
-}

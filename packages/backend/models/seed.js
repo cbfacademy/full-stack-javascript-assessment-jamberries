@@ -1,18 +1,14 @@
-
 require('dotenv').config();
 const mongoose = require("mongoose");
-const FilmsModel = require('../models/FilmsModel.js');
-const ActorsModel = require('../models/ActorsModel.js');
-const GenreModel = require('../models/GenreModel.js');
+const FilmsModel = require('./FilmsModel.js');
+const ActorsModel = require('./ActorsModel.js');
+const GenreModel = require('./GenreModel.js');
 const db = process.env.MONGO_URI;
 const authToken = process.env.TMDB_TOKEN
 
-const actor = 0
-
 const apiKey = process.env.TMDB_KEY
-//const actorCreditsUrl = [`${process.env.TMDB_ACTOR_CREDITS_URL}${actor}/movie_credits&api_key=${apiKey}&?language=en-US`];
-const genreUrl = [`${process.env.TMDB_GENRE_URL}&api_key=${apiKey}`]
-const movieUrl = [`${process.env.TMDB_MOVIE_URL}&api_key=${apiKey}`]
+const filmUrl = [`https://api.themoviedb.org/3/person/2888/movie_credits?api_key=${apiKey}&?language=en-US`];
+const genreUrl = [`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`]
 
 
 const fetch = require("node-fetch");
@@ -25,23 +21,53 @@ const options = {
     }
 };
 
-
 let filmData;
 let filmCounter = 0;
-let actorIdArray = [];
+let genreData;
+let genreCounter = 0;
+
 mongoose.connect(db)
 .then(() => console.log("mongodb connection success"))
 //.then(() => getURLarray())
-.then(()=> createFilmCollection())
+.then(()=> createDB())
 //.then(() => process.exit())
 .catch(error => console.log(error));
 
-function createFilmCollection () {
-  const FilmsModel = require('../models/FilmsModel.js');
 
-  actorIdArray.map(async actorIdArray => {
+/* 
+Create an array or urls using actor person_id
+ - iterate over actor ids in db - retrieve array of ids
+For each id in array, perform fetch. If tmdb_id exists already, ignore
+
+Possibly ignore credits with character: Self (archive footage)
+*/
+
+function createDB () {
+
+  // genreUrl.map(async genreUrl => {
+  //   try {
+  //     const res = await fetch(genreUrl, options);
+  //     const genreJson = await res.json();
+  //     genreData = genreJson.genres;   
+
+  //     for (let i = 0; i < genreData.length; i++) {      
+  //       let genre = new GenreModel({
+  //           name: genreData[i].name,
+  //           tmdb_id: genreData[i].id,
+  //       })   
+  //       genre.save()
+  //       .then(()=> console.log(`Saved Item ${genreData[i].name}`))
+  //       .catch(error => console.log(error))
+  //     }
+  //   } 
+  //   catch (error) {
+  //     console.log(error);
+  //   }
+  // })
+
+  filmUrl.map(async filmUrl => {
     try {
-      const response = await fetch(actorCreditsUrl);
+      const response = await fetch(filmUrl, options);
       const filmJson = await response.json();
       filmData = filmJson.cast;
 
@@ -85,6 +111,18 @@ function createFilmCollection () {
             break;  
           } 
         }
+    /*  let query = { 
+        title: filmData[i].title,
+        tmdb_id: filmData[i].id,
+        genres: filmData[i].genre_ids,
+        overview:filmData[i].overview,
+        poster_path: filmData[i].poster_path,
+        backdrop_path: filmData[i].backdrop_path,
+        release_date: filmData[i].release_date,
+        }
+
+      let options = {upsert: true, new: true}
+      let update = {$inc : {actor_count: 1}*/
       }
     }
     catch (error) {
@@ -93,45 +131,8 @@ function createFilmCollection () {
     })
     }
 
-    function populateGenreCollection(genreUrl, options) {
-        genreUrl.map(async genreUrl => {
-      try {
-        const res = await fetch(genreUrl, options);
-        const genreJson = await res.json();
-        genreData = genreJson.genres;   
-
-        for (let i = 0; i < genreData.length; i++) {      
-          let genre = new GenreModel({
-              name: genreData[i].name,
-              tmdb_id: genreData[i].id,
-          })   
-          genre.save()
-          .then(()=> console.log(`Saved Item ${genreData[i].name}`))
-          .catch(error => console.log(error))
-        }
-      } 
-      catch (error) {
-        console.log(error);
-      }
-    })
-    }
-
-    function getURLArray (array) {
-      for (let i = 0; i < array.length; i++){
-        array[i]= `${actorCreditsUrl}${array[i]}/movie_credits&api_key=${apiKey}&?language=en-US`
-      }
-      return array
-    }
-
-// Create an array or urls using actor person_id
-//  - iterate over actor ids in db - retrieve array of ids
-// For each id in array, perform fetch. If tmdb_id exists already, ignore
-
-// Possibly ignore credits with character: Self (archive footage)
-// */
-
-  //const actorCreditsUrl = [`${process.env.TMDB_ACTOR_CREDITS_URL}${actor}/movie_credits?api_key=${apiKey}&?language=en-US`];
-
+function getURLarray () {
+  //let url = [`https://api.themoviedb.org/3/person/19492/movie_credits?api_key=${apiKey}&?language=en-US`];
   // will need different model for actors
 
   // const finder = ActorsModel.find({
@@ -140,11 +141,9 @@ function createFilmCollection () {
   //   }
   // })
   
-// const finder = mongoose.connection.db.collection('actors').find({
-//     "name": "Viola Davis"
-//   })
-//  console.log(finder)
-//   //console.log(ActorsModel.find({}).select('tmdb_id'))
-// }
-
-module.exports = createFilmCollection
+const finder = mongoose.connection.db.collection('actors').find({
+    "name": "Viola Davis"
+  })
+ console.log(finder)
+  //console.log(ActorsModel.find({}).select('tmdb_id'))
+}
