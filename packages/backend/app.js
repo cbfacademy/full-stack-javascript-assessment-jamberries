@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const Films = require('./models/FilmsModel.js');
 const Genre = require("./models/GenreModel");
-const Films = require('./models/FilmsModel.js');
 const lib = require('./lib/lib')
 const uri = process.env.MONGO_URI; 
 
