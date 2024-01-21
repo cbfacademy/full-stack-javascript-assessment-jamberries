@@ -3,7 +3,6 @@ const router = express.Router();
 const Actors = require("../models/ActorsModel");
 
 router.get('/api/actors', async (req, res) => {
-   try {
       const page = parseInt(req.query.page || "0")
       const pageSize = 18;
       const totalActors = await Actors.countDocuments({})
@@ -15,10 +14,8 @@ router.get('/api/actors', async (req, res) => {
       res.json({
         actors, 
         pages: Math.ceil(totalActors / pageSize)});
-   } catch (error) {
       console.error(error)
       res.status(500).send("Server Error")
-   }
 })
 
 router.post('/api/actors', async (req, res) => {

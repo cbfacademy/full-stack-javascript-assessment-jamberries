@@ -14,7 +14,7 @@ export default function Home() {
     const [films, setFilms] = useState([]);
     useEffect(() => {
         const fetchFilms = async () => {
-            const res = await fetch(`${api_url}/api/films/home-page`);
+            const res = await fetch(`${api_url}/api/home-page`);
             const data = await res.json()
             setFilms(data)
         };

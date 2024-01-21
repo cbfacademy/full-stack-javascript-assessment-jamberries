@@ -52,7 +52,7 @@ function createFilmCollection () {
           let query = FilmsModel.where({tmdb_id: filmData[i].id})
           let filmExits = await query.findOne()
 
-          if(filmExits == null) {
+          if(filmExits === null) {
             let film = new FilmsModel({
               title: filmData[i].title,
               tmdb_id: filmData[i].id,
