@@ -101,7 +101,8 @@ Poster path
 
 Backdrop path 
 - https://media.themoviedb.org/t/p/w533_and_h300_bestv2/${backdrop_path}
-
+ - https://media.themoviedb.org/t/p/w1066_and_h600_bestv2/
+- /k9hhSHg5GS4UgWQC6MHBOZrarji.jpg
 - example 
 - /j69IYCAmeFlF6dcoZZAWRUmI8On.jpg
 
@@ -118,3 +119,10 @@ user verification?
 Read me very detailed - prod, pagination etc
 
 accesibility
+
+filters - at least two black actors
+all films
+
+films - characters and actors
+
+DOC BLOCKS

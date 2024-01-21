@@ -90,3 +90,13 @@
   border-radius: 25px !important;
 }
 
+.buttonLink {
+  text-decoration: none !important;
+  color:#ff5501 !important;
+}
+
+.carousel {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
