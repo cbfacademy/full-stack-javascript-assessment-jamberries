@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Box from '@mui/material/Box';
@@ -12,39 +12,17 @@ export default function ActorDetail() {
     const { id } = useParams();
     const [actor, setActor] = useState(null);
 
-    const fetchActorItem = useMemo(() => async () => {
-        try {
-            fetch(`${tmdb_url}${id}${tmdb_api}`)
-            .then(res => res.json({}))
-            .then((actor) => {
-              setActor(actor)
-          })
-          .catch(error => console.error(error))
-        } catch (error) {
-          console.error('Error fetching product list:', error);
-        }
-       }, [id]);
-    
         useEffect(() => {
-            fetchActorItem();
-        }, [fetchActorItem]);
+            const fetchActorDetail= async () => {
+                const res = await fetch(`${tmdb_url}${id}${tmdb_api}`);
+                const data = await res.json()
+                setActor(data)
+            };
+            fetchActorDetail();
+        }, [id]);
 
     if (actor) {
 
-    //    
-    //                         <h1 className="mt-5"> {actor.name}</h1>
-    //                         <br/>
-    //                         <p>{actor.tagline}</p>
-    //                         <p className="">{actor.biography}</p>
-    //                         <p>{actor.birthday}</p>
-    //                         <p>{actor.place_of_birth}</p>
-    //                         <p>{actor.also_known_as}</p>
-    //                     </Col>
-    //             </Row>
-    //         </Container>
-    //     )
-    //     };
-    // };
     return (
         <Container>
             <Box sx={{ flexGrow: 1 }}>

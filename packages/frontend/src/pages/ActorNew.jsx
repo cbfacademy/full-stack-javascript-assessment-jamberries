@@ -50,7 +50,7 @@ export default function ActorNew() {
             fetch(`${api_url}/api/films`, options)
             .then(res => res.json({}))
             .then((data) => {
-                if(data.dbmessage === 'success') {
+                if(data === 'success') {
                     setOpenSnack(true)
                     setdbmessage('success')
                 } else {
