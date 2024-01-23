@@ -6,7 +6,8 @@ import {
   CircularProgress,
   Typography,
   Grid,
-  Box
+  Box,
+  Alert
 } from "@mui/material";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
@@ -24,6 +25,7 @@ export default function AutocompleteInput(props) {
   const [options, setOptions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [open, setOpen] = useState(false);
+  const [alert, setAlert] = useState(false);
   
   const loading = open && options.length === 0 && inputValue.length > 0;
 
@@ -44,10 +46,17 @@ export default function AutocompleteInput(props) {
     }, [inputValue, setOptions]);
 
     const handleChange = (event, value) => {
-    props.setSelected(value)}
+      // if(value[0] !== undefined && value[0].hasOwnProperty('id')) {
+        props.setSelected(value)
+      // } else {
+      //   console.log(value)
+      //   setAlert(true)
+      // }
+   }
 
   return (
     <Box mt={5}>
+      {alert ? <Alert severity="error" onClose={() => {setAlert(false)}}> Please Select a valid actor</Alert> : ""}
           <Autocomplete
             id="actorSearch"
             multiple
@@ -114,7 +123,6 @@ export default function AutocompleteInput(props) {
                   value={inputValue}
                   InputProps={{
                     ...params.InputProps, 
-                    // autoComplete: "new-password", // forces no auto-complete history
                     endAdornment: (
                       <InputAdornment
                         position="end"
