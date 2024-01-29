@@ -1,6 +1,5 @@
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import EngineeringOutlinedIcon from '@mui/icons-material/EngineeringOutlined';
 
 /**
  * Component to show alert on database success
@@ -18,16 +17,15 @@ export default function SnackbarAlert(props) {
 
   return (
     <div>
-      <Snackbar open={true} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={props.openSnack} autoHideDuration={6000} onClose={handleClose}>
         <Alert
           onClose={handleClose}
-          // severity={ props.dbmessage === "success" ? 'success' : 'warning'}
-          severity='warning'
+          severity={ props.dbmessage === "success" ? 'success' : 'warning'}
           variant="filled"
           sx={{ width: '100%' }}
         >
-            {/* { props.dbmessage === "success" ? 'Success! Your actors and films were added to the database!' : 'Update failed! Try again later.'} */}
-          This Page is under construction <EngineeringOutlinedIcon/>
+            { props.dbmessage === "success" ? 'Success! Your actors and films were added to the database!' : 'Update failed! Try again later.'}
+          
         </Alert>
       </Snackbar>
     </div>
